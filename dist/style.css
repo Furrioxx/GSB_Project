@@ -1,3 +1,92 @@
+html {
+  height: 100%;
+}
 
+body {
+  margin: 0;
+  min-height: 100%;
+}
+body nav {
+  margin-bottom: 2em;
+  background-color: #638EC3;
+  height: 126px;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+body nav h1 {
+  grid-row: 1;
+  margin: 0;
+  font-size: 100px;
+  color: white;
+  font-family: "Julius Sans One";
+  grid-column: 2;
+}
+body nav div {
+  text-align: right;
+  margin-right: 1em;
+  grid-column: 3;
+  grid-row: 1;
+}
+body nav div a {
+  color: #D1DDEC;
+  font-size: 24px;
+  font-family: "Julius Sans One";
+  text-decoration: none;
+}
+body nav div a:hover {
+  cursor: pointer;
+}
+body nav div a button {
+  border-radius: 30px;
+  font-size: 24px;
+  border: none;
+  background-color: #D1DDEC;
+  font-family: "Julius Sans One";
+  padding: 0.5em 1em 0.5em 1em;
+}
+body nav div a button:hover {
+  cursor: pointer;
+}
+body nav div form input {
+  border-radius: 30px;
+  font-size: 24px;
+  border: none;
+  background-color: #D1DDEC;
+  font-family: "Julius Sans One";
+  padding: 0.5em 1em 0.5em 1em;
+}
+body nav div form input:hover {
+  cursor: pointer;
+}
+body main form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+body main form input[type=mail], body main form input[type=password] {
+  padding: 1em 2em 1em 2em;
+  width: 300px;
+  border-radius: 30px;
+  border: 1px #638EC3 solid;
+}
+body main form input[type=mail]:focus, body main form input[type=password]:focus {
+  outline: none;
+}
+body main form input[type=submit] {
+  border: none;
+  background-color: #638EC3;
+  color: #D1DDEC;
+  font-family: "Julius Sans One";
+  font-size: 24px;
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 30px;
+}
+body main form .err {
+  margin: 0;
+  color: red;
+}
 
 /*# sourceMappingURL=style.css.map */

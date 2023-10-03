@@ -2,28 +2,45 @@
 session_start();
 
 
-if(isset($_SESSION['error_msg'])){
-    echo $_SESSION['error_msg'];
-}
-
+// destrcution de la session après déconnexion
 if(isset($_POST['deco'])){
     session_destroy();
+    $hrefLogIn = "connexion.php";
+}
+else{
+    if(isset($_SESSION['mail'])){
+        $hrefLogIn = "dashboard.php";
+    }
+    else{
+        $hrefLogIn = "connexion.php";
+    }
 }
 
+
+
 ?>
+
+<!-- formulaire de connexion -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Fiche de frais GSB</title>
+    <link rel="stylesheet" href="dist/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="login.php" method="post">
-        <input type="mail" placeholder="Mail" name="mail">
-        <input type="password" placeholder="Password" name="password">
-        <input type="submit" value="Login" name="submit">
-    </form>
+    <nav>
+        <h1>Bienvenue</h1>
+        <div>
+            <a href="">Inscription</a>
+            <a href="<?php echo $hrefLogIn; ?>"><button>Connexion</button></a>
+        </div>
+    </nav>
+    
 </body>
 </html>
