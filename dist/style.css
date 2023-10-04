@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -87,6 +88,32 @@ body main form input[type=submit] {
 body main form .err {
   margin: 0;
   color: red;
+}
+body .cloud {
+  position: absolute;
+  width: 650px;
+  opacity: 70%;
+  transform: translate(-50%, -50%);
+  top: 65%;
+}
+body .cloud1 {
+  position: absolute;
+  width: 650px;
+  opacity: 50%;
+  transform: translate(0, -50%);
+  top: 60%;
+  left: 80%;
+}
+body .flexContainer {
+  display: flex;
+  justify-content: center;
+}
+body .flexContainer .titleIndex {
+  font-family: "Julius Sans One";
+  font-size: 118px;
+  color: #638EC3;
+  text-align: center;
+  width: 70%;
 }
 
 /*# sourceMappingURL=style.css.map */
