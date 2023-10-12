@@ -15,9 +15,6 @@ else{
         $hrefLogIn = "connexion.php";
     }
 }
-
-
-
 ?>
 
 <!-- formulaire de connexion -->
@@ -37,7 +34,6 @@ else{
     <nav>
         <h1>Bienvenue</h1>
         <div>
-            <a href="">Inscription</a>
             <a href="<?php echo $hrefLogIn; ?>"><button>Connexion</button></a>
         </div>
     </nav>

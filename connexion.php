@@ -1,5 +1,4 @@
 <?php
-$test = "test";
 session_start();
 ?>
 
@@ -18,9 +17,6 @@ session_start();
 <body>
     <nav>
         <h1>Connexion</h1>
-        <div>
-            <a href="inscription.php"><button>Inscription</button></a>
-        </div>
     </nav>
     
     <main>

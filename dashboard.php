@@ -4,7 +4,7 @@ session_start();
 $valueDeco = "";
 
 // vérification de la provenance de l'utilisateur
-if(isset($_SESSION['mail'])){
+if(isset($_SESSION['pseudo'])){
 
     // destrcution de la variable erreur message
     if(isset($_SESSION['error_msg'])){
@@ -13,7 +13,7 @@ if(isset($_SESSION['mail'])){
 
     $valueDeco = 'Déconnexion';
 
-    $title = "Bonjour " .   $_SESSION['mail'];
+    $title = "Bonjour " .   $_SESSION['pseudo'];
 
 }
 else{
