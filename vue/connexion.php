@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="dist/style.css">
+    <link rel="stylesheet" href="../dist/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@ session_start();
     </nav>
     
     <main>
-        <form action="login.php" method="post" class="loginForm">
+        <form action="../controller/login.php" method="post" class="loginForm">
             <input type="mail" placeholder="Mail" name="mail" required>
             <input type="password" placeholder="Password" name="password" required>
             <input type="submit" value="Login" name="submit">

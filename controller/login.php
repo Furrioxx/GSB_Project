@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('config.php');
+include('../model/config.php');
 
 
 if(isset($_POST['submit'])){
@@ -15,28 +15,28 @@ if(isset($_POST['submit'])){
             if(!empty($resultTab)){
                 foreach ($resultTab as $key => $value) {
                     if(password_verify($_POST['password'], $value['password'])){
-                        $_SESSION['pseudo'] = $value['name'];
-                        echo"trouvé";
+                        $_SESSION['name'] = $value['name'];
+                        $_SESSION['statut'] = $value['statut'];
                         header("Location: dashboard.php");
                     }
                     else{
                         $_SESSION['error_msg'] = "<p class='err'>L'indentifiant ou le mot de passe est incorrect !!</p>";
-                        header('Location: connexion.php');
+                        header('Location: ../vue/connexion.php');
                     }
                 }
             }
             else{
                 $_SESSION['error_msg'] = "<p class='err'>L'indentifiant ou le mot de passe est incorrect !!</p>";
-                header('Location: connexion.php');
+                header('Location: ../vue/connexion.php');
             }
     }
     else{
         $_SESSION['error_msg'] = "<p class='err'>Les champs n'ont pas tous été remplie</p>";
-        header('Location: connexion.php'); 
+        header('Location: ../vue/connexion.php'); 
     }
 
 }
 else{
-    header('Location: connexion.php');
+    header('Location: ../vue/connexion.php');
 }
 ?>
