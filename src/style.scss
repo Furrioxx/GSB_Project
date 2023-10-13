@@ -13,7 +13,8 @@ body{
     nav {
         margin-bottom: 2em;
         background-color: $bluecolor;
-        height: 126px;
+        $navHeight : 126px;
+        height: $navHeight;
         width: 100%;
         display: grid;
         align-items: center;
@@ -27,6 +28,55 @@ body{
             grid-column: 2 ;
         }
         div{
+            display: flex;
+            align-items: center;
+            grid-column: 3;
+            justify-content: right;
+            gap: .5em;
+            svg{
+                stroke: $whiteColor;
+                width: 30px;
+                height: 30px;
+                transition: stroke .2s;
+                &:hover{
+                    cursor: pointer;
+                    stroke: #2B2D42;
+                }
+            }
+            .user-image{
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            .navUser{
+                display: flex;
+                position: fixed;
+                flex-direction: column;
+                align-items: center;
+                z-index: 10;
+                right: 0;
+                top: $navHeight;
+                width: 150px;
+                background-color: red;
+                height: 180px;
+                margin-right: 0;
+                p{
+                    margin: 0;
+                }
+                form{
+                    .deo-btn{
+                        background: none;
+                        border: none;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            
             text-align: right;
             margin-right: 1em;
             grid-column: 3;
@@ -52,7 +102,7 @@ body{
                 }
             }
             form{
-                input{
+                .big-btn{
                     border-radius: 30px;
                     font-size: 24px;
                     border: none;

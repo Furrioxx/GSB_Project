@@ -3,13 +3,13 @@ session_start();
 
 
 // destrcution de la session après déconnexion
-if(isset($_POST['deco'])){
+if(isset($_GET['deco'])){
     session_destroy();
     $hrefLogIn = "vue/connexion.php";
 }
 else{
-    if(isset($_SESSION['mail'])){
-        $hrefLogIn = "vue/dashboard.php";
+    if(isset($_SESSION['name'])){
+        $hrefLogIn = "controller/dashboard.php";
     }
     else{
         $hrefLogIn = "vue/connexion.php";

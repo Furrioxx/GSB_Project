@@ -18,9 +18,6 @@ if(isset($_SESSION['name'])){
     else{
         include('../vue/pageComptable.php');
     }
-
-    
-
 }
 else{
     $title = "Veuillez vous connecter pour accéder à votre dashboard";

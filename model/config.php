@@ -13,4 +13,8 @@ catch (Exception $e)
         die('Erreur : ' . $e->getMessage());
 }
 
+function decoDb(){
+    $db = null;
+}
+
 ?>

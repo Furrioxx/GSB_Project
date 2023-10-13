@@ -25,10 +25,56 @@ body nav h1 {
   grid-column: 2;
 }
 body nav div {
+  display: flex;
+  align-items: center;
+  grid-column: 3;
+  justify-content: right;
+  gap: 0.5em;
   text-align: right;
   margin-right: 1em;
   grid-column: 3;
   grid-row: 1;
+}
+body nav div svg {
+  stroke: #D1DDEC;
+  width: 30px;
+  height: 30px;
+  transition: stroke 0.2s;
+}
+body nav div svg:hover {
+  cursor: pointer;
+  stroke: #2B2D42;
+}
+body nav div .user-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+body nav div .user-image:hover {
+  cursor: pointer;
+}
+body nav div .navUser {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  right: 0;
+  top: 126px;
+  width: 150px;
+  background-color: red;
+  height: 180px;
+  margin-right: 0;
+}
+body nav div .navUser p {
+  margin: 0;
+}
+body nav div .navUser form .deo-btn {
+  background: none;
+  border: none;
+}
+body nav div .navUser form .deo-btn:hover {
+  cursor: pointer;
 }
 body nav div a {
   color: #D1DDEC;
@@ -50,7 +96,7 @@ body nav div a button {
 body nav div a button:hover {
   cursor: pointer;
 }
-body nav div form input {
+body nav div form .big-btn {
   border-radius: 30px;
   font-size: 24px;
   border: none;
@@ -58,7 +104,7 @@ body nav div form input {
   font-family: "Julius Sans One";
   padding: 0.5em 1em 0.5em 1em;
 }
-body nav div form input:hover {
+body nav div form .big-btn:hover {
   cursor: pointer;
 }
 body main form {
