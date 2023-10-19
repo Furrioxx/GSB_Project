@@ -2,13 +2,13 @@
 session_start();
 
 include('../model/config.php');
+include('../model/functionSQL.php');
 
 
 if(isset($_POST['submit'])){
     // vérification que les champs sont bien remplis
     if(!empty($_POST['mail']) && !empty($_POST['password'])){
-        //get user function
-        include('../model/getUser.php');
+        $result = $fucntionSQL->getUser($db);
         if(!empty($result)){
             foreach ($result as $key => $value) {
                 if(password_verify($_POST['password'], $value['password'])){
@@ -18,18 +18,18 @@ if(isset($_POST['submit'])){
                     header("Location: dashboard.php");
                 }
                 else{
-                    $_SESSION['error_msg'] = "<p class='err'>L'indentifiant ou le mot de passe est incorrect !!</p>";
+                    $_SESSION['error_msg'] = "L'indentifiant ou le mot de passe est incorrect !!";
                     header('Location: ../vue/connexion.php');
                 }
             }
         }
         else{
-            $_SESSION['error_msg'] = "<p class='err'>L'indentifiant ou le mot de passe est incorrect !!</p>";
+            $_SESSION['error_msg'] = "L'indentifiant ou le mot de passe est incorrect !!";
             header('Location: ../vue/connexion.php');
         }
     }
     else{
-        $_SESSION['error_msg'] = "<p class='err'>Les champs n'ont pas tous été remplie</p>";
+        $_SESSION['error_msg'] = "Les champs n'ont pas tous été remplie";
         header('Location: ../vue/connexion.php'); 
     }
 
