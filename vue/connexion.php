@@ -24,8 +24,8 @@ session_start();
             if(isset($_SESSION['error_msg'])){
                 echo '<p class="err">'. $_SESSION['error_msg'].'</p>';
             }
-
             ?>
+
         </form>
     </main>
 
