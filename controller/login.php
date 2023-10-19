@@ -10,11 +10,10 @@ if(isset($_POST['submit'])){
         //vérification du mail et mdp
         $sql1 = "SELECT * FROM visiteurs WHERE login = '".$_POST['mail']."'";
         $result = $db->prepare($sql1);
-        $result->execute(); 
-        $resultTab = $result->fetchAll();
-        decoDb();
-        if(!empty($resultTab)){
-            foreach ($resultTab as $key => $value) {
+        $result->execute();
+        decoDb($db);
+        if(!empty($result)){
+            foreach ($result as $key => $value) {
                 if(password_verify($_POST['password'], $value['password'])){
                     $_SESSION['name'] = $value['name'];
                     $_SESSION['statut'] = $value['statut'];
