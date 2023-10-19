@@ -14,6 +14,7 @@ class request{
         $resultArray = $result->fetchAll();
         return $resultArray;
     }
+    
 }
 
 ?>
