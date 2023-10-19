@@ -52,6 +52,7 @@ body{
                 }
             }
             .navUser{
+                padding-top: 1em;
                 display: flex;
                 position: fixed;
                 flex-direction: column;
@@ -61,7 +62,8 @@ body{
                 top: $navHeight;
                 width: 150px;
                 background-color: red;
-                height: 180px;
+                height: 170px;
+                border-radius: 0 0 0 3px;
                 margin-right: 0;
                 p{
                     margin: 0;
@@ -128,7 +130,7 @@ body{
             input[type=mail], input[type=password]{
                 padding: 1em 2em 1em 2em ;
                 width: 300px;
-                border-radius: 30px;
+                border-radius: 5px;
                 border: 1px $bluecolor solid;
                 &:focus{
                     outline: none;

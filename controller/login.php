@@ -7,11 +7,8 @@ include('../model/config.php');
 if(isset($_POST['submit'])){
     // vérification que les champs sont bien remplis
     if(!empty($_POST['mail']) && !empty($_POST['password'])){
-        //vérification du mail et mdp
-        $sql1 = "SELECT * FROM visiteurs WHERE login = '".$_POST['mail']."'";
-        $result = $db->prepare($sql1);
-        $result->execute();
-        decoDb($db);
+        //get user function
+        include('../model/getUser.php');
         if(!empty($result)){
             foreach ($result as $key => $value) {
                 if(password_verify($_POST['password'], $value['password'])){

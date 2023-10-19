@@ -54,6 +54,7 @@ body nav div .user-image:hover {
   cursor: pointer;
 }
 body nav div .navUser {
+  padding-top: 1em;
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -63,7 +64,8 @@ body nav div .navUser {
   top: 126px;
   width: 150px;
   background-color: red;
-  height: 180px;
+  height: 170px;
+  border-radius: 0 0 0 3px;
   margin-right: 0;
 }
 body nav div .navUser p {
@@ -116,7 +118,7 @@ body main form {
 body main form input[type=mail], body main form input[type=password] {
   padding: 1em 2em 1em 2em;
   width: 300px;
-  border-radius: 30px;
+  border-radius: 5px;
   border: 1px #638EC3 solid;
 }
 body main form input[type=mail]:focus, body main form input[type=password]:focus {
