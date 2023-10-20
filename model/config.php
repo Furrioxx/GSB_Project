@@ -1,9 +1,10 @@
 <?php
-
 $servername = "localhost";
+$dbname = "gsb";
 $username = "root";
 $password = "";
-$dbname = "gsb";
+
+
 try{
     $db = new PDO('mysql:host='. $servername .';dbname='. $dbname . ';charset=utf8', '' . $username . '' , '' . $password . '');
 }

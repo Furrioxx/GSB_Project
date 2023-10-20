@@ -15,7 +15,7 @@
     <form action="../controller/horsForfait.php" method="post">
         <h2>Hors forfait</h2>
         <input type="text" name ="libelle" placeholder ="libelle" required>
-        <input type="number" name ="montant" placeholder ="montant" required>
+        <input type="number" step="0.01" name ="montant" placeholder ="montant" required>
         <input type="date" name="date" id="dateInput" required>
         <input type="submit" name ="submit" placeholder ="valider">
     </form>
