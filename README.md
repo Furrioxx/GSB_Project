@@ -9,3 +9,5 @@
 * login : pierrick.duchamps@gmail.com
 * mdp : duchamps1234
 * statut : comptable
+
+TODO : mettre db en anglais !!!!!
