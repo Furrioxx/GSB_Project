@@ -9,6 +9,7 @@
     </svg>
     <div class="navUser">
         <p><?php echo $_SESSION['name'] . " " . $_SESSION['surname']?></p>
+        
         <form action="../index.php" method="get">
             <input type="submit" name="deco" value="Déconnexion" class="deo-btn">
         </form>
