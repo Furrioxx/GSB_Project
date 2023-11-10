@@ -266,4 +266,11 @@ body .flexContainer .titleIndex {
 
 
 
+
+.frais{
+  background-color: lightblue;
+  display: flex;
+  gap: 1em;
+  border: solid 1px black;
+}
 /*# sourceMappingURL=style.css.map */

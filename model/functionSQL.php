@@ -1,13 +1,9 @@
 <?php
 
-session_start();
-
 include('config.php');
 
-
-$fucntionSQL = new request();
-
 class request{
+    
     public function __construct()
     {
         
@@ -32,6 +28,10 @@ class request{
         $result->execute();
     }
 
+    public function insertFraisInclued($db){
+
+    }
+
     public function getCostSheetID($db){
         //select where id user === session id
         $query = "SELECT * FROM cost_sheet WHERE idUser = '".$_SESSION['idUser']."'";
@@ -44,6 +44,9 @@ class request{
             if($dateDB == $actualDate){
                 $goodDate = $value['mois'];
             }
+            else{
+
+            }
         }
 
         $query = "SELECT idFicheFrais FROM cost_sheet WHERE mois = '".$goodDate."'";
@@ -53,6 +56,32 @@ class request{
         return $resultArray;
         //si elle existe pas alors creer un nouvvelle fiche frais avec session id user
 
+    }
+
+
+    public function getCostNotInclued($db){
+        $request = new request();
+        $costSheetID = $request->getCostSheetID($db);
+        foreach ($costSheetID as $key => $value) {
+            $query = "SELECT * FROM cost_not_inclued WHERE idFicheFrais = '".$value['idFicheFrais']."'";
+        }
+        
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray =$result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getCostInclued($db){
+        $request = new request();
+        $costSheetID = $request->getCostSheetID($db);
+        foreach ($costSheetID as $key => $value) {
+            $query = "SELECT * FROM cost_inclued WHERE idFicheFrais = '".$value['idFicheFrais']."'";
+        }
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray =$result->fetchAll();
+        return $resultArray;
     }
 }
 
