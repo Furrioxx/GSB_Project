@@ -27,6 +27,7 @@
         <h3>Alimentation</h3>
         <input type="text" placeholder="Nom du restaurant" name="restaurantName">
         <input type="number" step="0.01" placeholder="Montant de l'addition" name="restaurantPrice">
+        <input type="date" name="restaurantDate">
 
         <input type="submit" name="submitF" value="valider">
     

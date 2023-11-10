@@ -16,6 +16,13 @@ class request{
         $resultArray = $result->fetchAll();
         return $resultArray;
     }
+
+    public function createFicheFrais($db){
+        $query = "INSERT INTO cost_sheet VALUES(null, 0, '".date('Y-m-d')."', '".$_SESSION['idUser']."')";
+        $result = $db->prepare($query);
+        $result->execute();
+        return $result;
+    }
     
     public function insertFraisNotInclued($db){
         //insert whith idCostSheet == getCostSheetID($db)
