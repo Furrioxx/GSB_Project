@@ -163,12 +163,27 @@ body .flexContainer .titleIndex {
   text-align: center;
   width: 70%;
 }
-
-
 .frais{
   background-color: lightblue;
   display: flex;
   gap: 1em;
   border: solid 1px black;
+}
+.mb-3{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+h2{
+  margin-left: 30px;
+}
+
+h3{
+  margin-left: 30px;
+}
+
+.viewFicheFrais{
+  margin-left: 30px;
+  margin-right: 30px;
 }
 /*# sourceMappingURL=style.css.map */

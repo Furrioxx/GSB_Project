@@ -6,6 +6,7 @@ include('../model/config.php');
 if(isset($_POST['submit'])){
     // vérification que les champs sont bien remplis
     if(!empty($_POST['mail']) && !empty($_POST['password'])){
+        $fucntionSQL = new request();
         $result = $fucntionSQL->getUser($db);
         if(!empty($result)){
             foreach ($result as $key => $value) {

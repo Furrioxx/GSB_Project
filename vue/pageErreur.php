@@ -6,9 +6,9 @@
 <body>
     <nav>
         <h1>Dashboard</h1>
-        <div>
+        <div class ="mb-3">
             <form action="../index.php" method="post">
-                <input type="submit" value='<?php echo $valueDeco; ?>' name="deco" class="big-btn">
+                <input type="submit" value='<?php echo $valueDeco; ?>' name="deco" class=" big-btn">
             </form>
         </div>
     </nav>
