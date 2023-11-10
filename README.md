@@ -11,3 +11,7 @@
 * statut : comptable
 
 TODO : mettre db en anglais !!!!!
+
+finir responsive boostrap
+verifier que class navbar marche bien (responsive)
+troiuver un moyent de mettre les formes en colone pas ligne

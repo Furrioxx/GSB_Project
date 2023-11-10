@@ -4,7 +4,7 @@
     <?php include('head.php')?> 
 </head>
 <body>
-    <nav>
+    <nav class="navbar-collapse">
         <?php include('../vue/UserNav.php') ?>
     </nav>
 
@@ -12,13 +12,21 @@
         <h2><?php echo $title; ?></h2>
         <p>Visiteurs</p>
     </main>
-    <form action="../controller/horsForfait.php" method="post">
-        <h2>Hors forfait</h2>
-        <input type="text" name ="libelle" placeholder ="libelle" required>
-        <input type="number" step="0.01" name ="montant" placeholder ="montant" required>
-        <input type="date" name="date" id="dateInput" required>
-        <input type="submit" name ="submit" placeholder ="valider">
-    </form>
+    <div class ="container-fluid">
+        <form action="../controller/horsForfait.php" method="post">
+            <h2>Hors forfait</h2>
+            <div class="mb-3">
+                <input type="text" name ="libelle" placeholder ="libelle" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" step="0.01" name ="montant" placeholder ="montant" required>
+            </div>
+            <div class="mb-3">
+                <input type="date" name="date" id="dateInput" required>
+            </div>
+            <input type="submit" name ="submit" placeholder ="valider" class="btn btn-primary">
+        </form>
+    </div>
 </body>
 <script src="../dist/viewDashboard.js"></script>
 </html>
