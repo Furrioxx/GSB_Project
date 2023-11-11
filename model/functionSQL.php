@@ -38,9 +38,8 @@ class request{
     
 
 
-    public function sendFrais($db, $id, $libelle, $montant, $timing ,$dateligne, $idficheFrais, $statu){
-        //statu cost = frais ou hors frais
-        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."')";
+    public function sendFrais($db, $id, $libelle, $montant, $timing ,$dateligne, $idficheFrais, $statu, $justif){
+        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."', '".$justif."')";
         $result = $db->prepare($query);
         $result->execute();
     }  

@@ -11,7 +11,7 @@
         <h2><?php echo $title; ?></h2>
         <span class="mb-3">Visiteurs</span>
     
-        <form action="../controller/fraisUser.php" method="post">
+        <form action="../controller/fraisUser.php" method="post" enctype="multipart/form-data">
             <h2>Frais Forfait</h2>
             <div class="mb-3">
                 <label for="beginDate">Date de début : </label>
@@ -83,7 +83,7 @@
 
         <h3>Vos fiches frais</h3>
 
-        <table class="table table-striped mb-3">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>

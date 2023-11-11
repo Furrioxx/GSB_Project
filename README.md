@@ -20,5 +20,6 @@ ajouter les justificatifs de type image, pour l'instant juste input
 cost sheet : 
 NT = non  traité
 
-cost : 
-statu =>  0 : forfait,  1 : hors forfait
+
+modif db cost : mettre link pour justif + mettre peut etre text - area pour other frais 
+mettre montant remboursé dans db cost_sheet
