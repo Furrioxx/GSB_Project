@@ -8,10 +8,9 @@
         <?php include('../vue/UserNav.php') ?>
     </nav>
     <span>
-        <main>
-            <h2><?php echo $title; ?></h2>
-            <p>Visiteurs</p>
-        </main>
+        <h2><?php echo $title; ?></h2>
+        <span class="mb-3">Visiteurs</span>
+    
         <form action="../controller/fraisUser.php" method="post">
             <h2>Frais Forfait</h2>
             <div class="mb-3">
@@ -82,14 +81,27 @@
             </div>
         </form>
 
-        <div class="viewFicheFrais">
-            <h3>Fiche frais View</h3>
+        <h3>Vos fiches frais</h3>
 
-            <?php
-            include('../controller/fraisUserView.php');
-            ?>
-        </div>
-</span>
+        <table class="table table-striped mb-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date de début</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Montant renseigné</th>
+                    <th scope="col">Montant remboursé</th>
+                    <th scope="col">Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include('../controller/ficheFraisUserView.php');
+                ?>
+            </tbody>
+        </table>
+
+    </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>
 </html>

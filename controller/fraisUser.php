@@ -137,8 +137,7 @@ if(isset($_POST['submit'])){
     else{
         //message erreur, les dates n'ont  pas été indiqué
     }
-    // $request->insertFraisNotInclued($db);
-    // header('Location: dashboard.php');
+    header('Location: dashboard.php');
 }
 
 ?>
