@@ -55,7 +55,7 @@ body nav div .user-image:hover {
 }
 body nav div .navUser {
   padding-top: 1em;
-  display: flex;
+  display: none;
   position: fixed;
   flex-direction: column;
   align-items: center;

@@ -17,27 +17,55 @@ class request{
         return $resultArray;
     }
 
-    public function createFicheFrais($db){
-        $query = "INSERT INTO cost_sheet VALUES(null, 0, '".date('Y-m-d')."', '".$_SESSION['idUser']."')";
+    public function createFicheFrais($db,$beginDate, $endDate){
+        $query = "INSERT INTO cost_sheet VALUES(null, 0, '".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."')";
         $result = $db->prepare($query);
         $result->execute();
-        return $result;
+        $query2 = "SELECT * FROM cost_sheet WHERE idUser = '".$_SESSION['idUser']."'";
+        $result2 = $db->prepare($query2);
+        $result2->execute();
+        $test = $result2->fetchAll();
+        return $test[count($test)-1]['idFicheFrais'];
+    }
+
+    public function getCvCarUser($db){
+        $query = "SELECT cvcar FROM users WHERE id = '".$_SESSION['idUser']."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        return $resultArray;
     }
     
-    public function insertFraisNotInclued($db){
-        //insert whith idCostSheet == getCostSheetID($db)
-        $request = new request();
-        $idSheet = $request->getCostSheetID($db);
-        foreach ($idSheet as $key => $value) {
-            $query = "INSERT INTO cost_not_inclued VALUES(null, '".$_POST['libelle']."', '".$_POST['montant']."', '".$_POST['date']."', '".$value['idFicheFrais']."')";
-        }
+    public function sendFrais($db, $id, $libelle, $montant, $dateligne, $idficheFrais, $statu){
+        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."','".$dateligne."','".$idficheFrais."','".$statu."')";
+        $result = $db->prepare($query);
+        $result->execute();
+    }  
+    
+    public function updatePriceCostSheet($db, $idFicheFrais){
+        $query = "SELECT SUM(montant) as total_price FROM cost WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        $query = "UPDATE cost_sheet SET montant = '".$resultArray['total_price']."' WHERE idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
     }
 
-    public function insertFraisInclued($db){
+    // public function insertFraisNotInclued($db){
+    //     //insert whith idCostSheet == getCostSheetID($db)
+    //     $request = new request();
+    //     $idSheet = $request->getCostSheetID($db);
+    //     foreach ($idSheet as $key => $value) {
+    //         $query = "INSERT INTO cost_not_inclued VALUES(null, '".$_POST['libelle']."', '".$_POST['montant']."', '".$_POST['date']."', '".$value['idFicheFrais']."')";
+    //     }
+    //     $result = $db->prepare($query);
+    //     $result->execute();
+    // }
 
-    }
+    // public function insertFraisInclued($db){
+
+    // }
 
     public function getCostSheetID($db){
         //select where id user === session id
@@ -66,30 +94,30 @@ class request{
     }
 
 
-    public function getCostNotInclued($db){
-        $request = new request();
-        $costSheetID = $request->getCostSheetID($db);
-        foreach ($costSheetID as $key => $value) {
-            $query = "SELECT * FROM cost_not_inclued WHERE idFicheFrais = '".$value['idFicheFrais']."'";
-        }
+    // public function getCostNotInclued($db){
+    //     $request = new request();
+    //     $costSheetID = $request->getCostSheetID($db);
+    //     foreach ($costSheetID as $key => $value) {
+    //         $query = "SELECT * FROM cost_not_inclued WHERE idFicheFrais = '".$value['idFicheFrais']."'";
+    //     }
         
-        $result = $db->prepare($query);
-        $result->execute();
-        $resultArray =$result->fetchAll();
-        return $resultArray;
-    }
+    //     $result = $db->prepare($query);
+    //     $result->execute();
+    //     $resultArray =$result->fetchAll();
+    //     return $resultArray;
+    // }
 
-    public function getCostInclued($db){
-        $request = new request();
-        $costSheetID = $request->getCostSheetID($db);
-        foreach ($costSheetID as $key => $value) {
-            $query = "SELECT * FROM cost_inclued WHERE idFicheFrais = '".$value['idFicheFrais']."'";
-        }
-        $result = $db->prepare($query);
-        $result->execute();
-        $resultArray =$result->fetchAll();
-        return $resultArray;
-    }
+    // public function getCostInclued($db){
+    //     $request = new request();
+    //     $costSheetID = $request->getCostSheetID($db);
+    //     foreach ($costSheetID as $key => $value) {
+    //         $query = "SELECT * FROM cost_inclued WHERE idFicheFrais = '".$value['idFicheFrais']."'";
+    //     }
+    //     $result = $db->prepare($query);
+    //     $result->execute();
+    //     $resultArray =$result->fetchAll();
+    //     return $resultArray;
+    // }
 }
 
 ?>

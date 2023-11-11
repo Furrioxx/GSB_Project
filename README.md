@@ -10,8 +10,8 @@
 * mdp : duchamps1234
 * statut : comptable
 
-TODO : mettre db en anglais !!!!!
+TODO : 
 
-finir responsive boostrap
-verifier que class navbar marche bien (responsive)
-troiuver un moyent de mettre les formes en colone pas ligne
+insert db les fris forfait et hors forfait, (1 voyage  = une fiche frais => id fiche frais dans methode createFicheFrais)
+afficher toute les FICHE frais, et quand on clique on vois tous les frais de cette dernière !!
+ajouter les justificatifs de type image, pour l'instant juste input
