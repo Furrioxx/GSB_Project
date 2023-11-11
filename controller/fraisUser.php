@@ -40,67 +40,67 @@ if(isset($_POST['submit'])){
                         if($kmTransport <= 5000){
                             if($CVCarUser <= 3){
                                 $cost = 0.529*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 4){
                                 $cost = 0.606*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 5){
                                 $cost = 0.636*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 6){
                                 $cost = 0.665*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser >= 7){
                                 $cost = 0.697*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                         }
                         else if($kmTransport > 5000 &&  $kmTransport <= 20000){
                             if($CVCarUser <= 3){
                                 $cost = 0.316*$kmTransport + 1061;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 4){
                                 $cost = 0.340*$kmTransport + 1330;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 5){
                                 $cost = 0.356*$kmTransport + 1391;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 6){
                                 $cost = 0.374*$kmTransport + 1457;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser >= 7){
                                 $cost = 0.394*$kmTransport + 1512;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                         }
                         else if($kmTransport > 20000){
                             if($CVCarUser <= 3){
                                 $cost = 0.369*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 4){
                                 $cost = 0.408*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 5){
                                 $cost = 0.427*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser == 6){
                                 $cost = 0.448*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                             else if ($CVCarUser >= 7){
                                 $cost = 0.470*$kmTransport;
-                                $request->sendFrais($db,null,'transport',$cost, $endDate, $idFicheFrais, 0);
+                                $request->sendFrais($db,null,'transport',$cost, null , $endDate, $idFicheFrais, 0);
                             }
                         }
                     }
@@ -112,10 +112,14 @@ if(isset($_POST['submit'])){
                     }
                 }
                 if(!empty($TimeLogement) && !empty($priceLogement)){
-                    //requete
+                    if($TimeLogement  != 0){
+                        $request->sendFrais($db,null,'logement',$priceLogement, $TimeLogement , $endDate, $idFicheFrais, 0);
+                    }
                 }
                 if(!empty($restaurantTime) && !empty($restaurantPrice)){
-                    //requete
+                    if($restaurantTime != 0){
+                        $request->sendFrais($db,null,'restauration',$restaurantPrice, $restaurantTime , $endDate, $idFicheFrais, 0);
+                    }
                 }
                 if(!empty($libelleOther) &&  !empty($montantOther) && !empty($fileOther)){
                     //requete

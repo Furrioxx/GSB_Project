@@ -18,7 +18,7 @@ class request{
     }
 
     public function createFicheFrais($db,$beginDate, $endDate){
-        $query = "INSERT INTO cost_sheet VALUES(null, 0, '".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."')";
+        $query = "INSERT INTO cost_sheet VALUES(null, 0, '".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."', 'NT')";
         $result = $db->prepare($query);
         $result->execute();
         $query2 = "SELECT * FROM cost_sheet WHERE idUser = '".$_SESSION['idUser']."'";
@@ -36,8 +36,11 @@ class request{
         return $resultArray;
     }
     
-    public function sendFrais($db, $id, $libelle, $montant, $dateligne, $idficheFrais, $statu){
-        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."','".$dateligne."','".$idficheFrais."','".$statu."')";
+
+
+    public function sendFrais($db, $id, $libelle, $montant, $timing ,$dateligne, $idficheFrais, $statu){
+        //statu cost = frais ou hors frais
+        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."')";
         $result = $db->prepare($query);
         $result->execute();
     }  
