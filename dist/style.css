@@ -132,7 +132,7 @@ body main form input[type=submit] {
   padding: 0.5em 1em 0.5em 1em;
   border-radius: 30px;
 }
-body main form .err {
+.err {
   margin: 0;
   color: red;
 }

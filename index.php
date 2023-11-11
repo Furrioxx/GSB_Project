@@ -19,8 +19,6 @@ else{
 
 
 include('vue/pageAcceuil.php');
-echo date("Y-m-d");
-echo substr(date("Y-m-d"),0,-3);
 ?>
 
 <!-- formulaire de connexion -->

@@ -77,6 +77,13 @@
                 <input type="file" name ="fileOther" class="form-control" id="fileOther">
             </div>
             <div class="mb-3">
+                <?php
+                    if(isset($_SESSION['error_msg_dashboard'])){
+                        echo '<p class="err">'. $_SESSION['error_msg_dashboard'].'</p>';
+                    }
+                ?>
+            </div>
+            <div class="mb-3">
                 <input type="submit" name ="submit" value ="valider" class="btn btn-primary">
             </div>
         </form>

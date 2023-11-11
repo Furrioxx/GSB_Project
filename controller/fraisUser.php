@@ -49,6 +49,10 @@ class fileDownload{
 }
 
 if(isset($_POST['submit'])){
+    if(isset($_SESSION['error_msg_dashboard'])){
+        unset($_SESSION['error_msg_dashboard']);
+    }
+
     $beginDate = $_POST['beginDate'];
     $endDate = $_POST['endDate'];
 
@@ -74,7 +78,7 @@ if(isset($_POST['submit'])){
         //vérification de la validité des dates 
         if($beginDate <= $endDate){
         //si au moins 1 frais est remplie :
-            if(!empty($kmTransport) || !empty($transportMontant) || !empty($transportFile) || !empty($NameLogement) || !empty($priceLogement) || !empty($restaurantName) || !empty($restaurantPrice) || !empty($libelleOther) || !empty($montantOther) || !empty($fileOther)){
+            if(!empty($kmTransport) || !empty($transportMontant) || !empty($TimeLogement) || !empty($priceLogement) || !empty($restaurantTime) || !empty($restaurantPrice) || !empty($libelleOther) || !empty($montantOther)){
                 //creer une fiche frais et return son id
                 $idFicheFrais = $request->createFicheFrais($db, $beginDate, $endDate);
                 if($_POST['transport'] == "car"){   
@@ -148,23 +152,27 @@ if(isset($_POST['submit'])){
                         }
                     }
                 }
+                //si le transport est le train
                 else{
-                    //si  c'est le train
+                    
                     if(!empty($transportMontant) && isset($_FILES['transportFile'])){
                         $fileDownload = new fileDownload();
                         $request->sendFrais($db, null, 'transport(train)', $transportMontant, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'transportFile'));
                     }
                 }
+                //si les champs hebergement on été remplies
                 if(!empty($TimeLogement) && !empty($priceLogement)){
                     if($TimeLogement  != 0){
                         $request->sendFrais($db,null,'logement',$priceLogement, $TimeLogement , $endDate, $idFicheFrais, 'F', null);
                     }
                 }
+                //si les champs alimentations on été remplies
                 if(!empty($restaurantTime) && !empty($restaurantPrice)){
                     if($restaurantTime != 0){
                         $request->sendFrais($db,null,'restauration',$restaurantPrice, $restaurantTime , $endDate, $idFicheFrais, 'F', null);
                     }
                 }
+                //si le champs autre a été remplies
                 if(!empty($libelleOther) &&  !empty($montantOther) && isset($_FILES['fileOther'])){
                     $fileDownload = new fileDownload();
                     $request->sendFrais($db, null, $libelleOther, $montantOther, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'fileOther'));   
@@ -173,14 +181,17 @@ if(isset($_POST['submit'])){
             }
             else{
                 //message erreur, aucun des champs ont été remplies (outre les dates)
+                $_SESSION['error_msg_dashboard'] = "Aucun champs n'a été remplie";
             }
         }
         else{
             //message erreur, les dates ne vont pas (debut supérieur a fin)
+            $_SESSION['error_msg_dashboard'] = "Les dates ne sont pas valides";
         }
     }
     else{
         //message erreur, les dates n'ont  pas été indiqué
+        $_SESSION['error_msg_dashboard'] = "Les dates n'ont pas été indiqué";
     }
     header('Location: dashboard.php');
 }
