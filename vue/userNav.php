@@ -1,3 +1,4 @@
+<img src="../src/logo.png" alt="logo gsb" width="130px">
 <h1>Dashboard</h1>
 <div>
     <img src="../src/user.jpg" alt="user image" class="user-image">

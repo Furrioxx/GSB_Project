@@ -12,14 +12,11 @@
 
 TODO : 
 
-insert db les fris forfait et hors forfait, (1 voyage  = une fiche frais => id fiche frais dans methode createFicheFrais)
-afficher toute les FICHE frais, et quand on clique on vois tous les frais de cette dernière !!
-ajouter les justificatifs de type image, pour l'instant juste input
+quand on clique sur une fiche frais on vois tous les frais de cette dernière !!
 
 
 cost sheet : 
 NT = non  traité
 
 
-modif db cost : mettre link pour justif + mettre peut etre text - area pour other frais 
 mettre montant remboursé dans db cost_sheet

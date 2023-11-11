@@ -65,7 +65,7 @@
                 <input type="number" step="0.01" placeholder="Montant de l'addition" name="restaurantPrice" class="form-control" >
             </div>
 
-            <h2>Autre</h2>
+            <h3>Autre</h3>
             <div class="mb-3">
                 <input type="text" name ="libelleOther" placeholder ="libelle" class="form-control" >
             </div>
