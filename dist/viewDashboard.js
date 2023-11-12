@@ -65,40 +65,76 @@ function formValidation(){
             isgood = false
             console.log('test2')
         }
-    }
-    else if(TimeLogement.value != '' && priceLogement.value == ''){
-        isgood = false
-    }
-    else if(TimeLogement.value == '' && priceLogement.value != ''){
-        isgood = false
-    }
-    else if(restaurantTime.value != '' && restaurantPrice.value == ''){
-        isgood = false
-    }
-    else if(restaurantTime.value == '' && restaurantPrice.value != ''){
-        isgood = false
-    }
-    else if(libellOther.value != '' && montantOther.value == '' && fileOther.files.length == 0){
-        isgood = false
-    }
-    else if(libellOther.value == '' && montantOther.value == '' && fileOther.files.length != 0){
-        isgood = false
-    }
-    else if(libellOther.value == '' && montantOther.value != '' && fileOther.files.length == 0){
-        isgood = false
-    }
-    else if(libellOther.value != '' && montantOther.value != '' && fileOther.files.length == 0){
-        isgood = false
-    }
-    else if(libellOther.value != '' && montantOther.value == '' && fileOther.files.length != 0){
-        isgood = false
-    }
-    else if(libellOther.value == '' && montantOther.value != '' && fileOther.files.length != 0){
-        isgood = false
+        else if(TimeLogement.value != '' && priceLogement.value == ''){
+            isgood = false
+        }
+        else if(TimeLogement.value == '' && priceLogement.value != ''){
+            isgood = false
+        }
+        else if(restaurantTime.value != '' && restaurantPrice.value == ''){
+            isgood = false
+        }
+        else if(restaurantTime.value == '' && restaurantPrice.value != ''){
+            isgood = false
+        }
+        else if(libellOther.value != '' && montantOther.value == '' && fileOther.files.length == 0){
+            isgood = false
+        }
+        else if(libellOther.value == '' && montantOther.value == '' && fileOther.files.length != 0){
+            isgood = false
+        }
+        else if(libellOther.value == '' && montantOther.value != '' && fileOther.files.length == 0){
+            isgood = false
+        }
+        else if(libellOther.value != '' && montantOther.value != '' && fileOther.files.length == 0){
+            isgood = false
+        }
+        else if(libellOther.value != '' && montantOther.value == '' && fileOther.files.length != 0){
+            isgood = false
+        }
+        else if(libellOther.value == '' && montantOther.value != '' && fileOther.files.length != 0){
+            isgood = false
+        }
+        else{
+            isgood = true
+        }
     }
     else{
-        isgood = true
+        if(TimeLogement.value != '' && priceLogement.value == ''){
+            isgood = false
+        }
+        else if(TimeLogement.value == '' && priceLogement.value != ''){
+            isgood = false
+        }
+        else if(restaurantTime.value != '' && restaurantPrice.value == ''){
+            isgood = false
+        }
+        else if(restaurantTime.value == '' && restaurantPrice.value != ''){
+            isgood = false
+        }
+        else if(libellOther.value != '' && montantOther.value == '' && fileOther.files.length == 0){
+            isgood = false
+        }
+        else if(libellOther.value == '' && montantOther.value == '' && fileOther.files.length != 0){
+            isgood = false
+        }
+        else if(libellOther.value == '' && montantOther.value != '' && fileOther.files.length == 0){
+            isgood = false
+        }
+        else if(libellOther.value != '' && montantOther.value != '' && fileOther.files.length == 0){
+            isgood = false
+        }
+        else if(libellOther.value != '' && montantOther.value == '' && fileOther.files.length != 0){
+            isgood = false
+        }
+        else if(libellOther.value == '' && montantOther.value != '' && fileOther.files.length != 0){
+            isgood = false
+        }
+        else{
+            isgood = true
+        }
     }
+    
         
         
     if(isgood){
