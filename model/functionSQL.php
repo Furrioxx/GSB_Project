@@ -49,13 +49,21 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetch();
-        $query = "UPDATE cost_sheet SET montant = '".$resultArray['total_price']."' WHERE idFicheFrais = '".$idFicheFrais."'";
+        $query = "UPDATE cost_sheet SET montant_total = '".$resultArray['total_price']."' WHERE idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
     }
 
     public  function getCostSheet($db){
         $query = "SELECT * FROM cost_sheet WHERE idUser =  '".$_SESSION['idUser']."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getAllCost($db, $idFicheFrais){
+        $query = "SELECT libelle, montant, timing, dateligne, statu, linkJustif, montant_total, statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchAll();

@@ -87,67 +87,67 @@ if(isset($_POST['submit'])){
                         if($kmTransport <= 5000){
                             if($CVCarUser <= 3){
                                 $cost = 0.529*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 4){
                                 $cost = 0.606*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 5){
                                 $cost = 0.636*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 6){
                                 $cost = 0.665*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser >= 7){
                                 $cost = 0.697*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                         }
                         else if($kmTransport > 5000 &&  $kmTransport <= 20000){
                             if($CVCarUser <= 3){
                                 $cost = 0.316*$kmTransport + 1061;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 4){
                                 $cost = 0.340*$kmTransport + 1330;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 5){
                                 $cost = 0.356*$kmTransport + 1391;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 6){
                                 $cost = 0.374*$kmTransport + 1457;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser >= 7){
                                 $cost = 0.394*$kmTransport + 1512;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                         }
                         else if($kmTransport > 20000){
                             if($CVCarUser <= 3){
                                 $cost = 0.369*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 4){
                                 $cost = 0.408*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 5){
                                 $cost = 0.427*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser == 6){
                                 $cost = 0.448*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                             else if ($CVCarUser >= 7){
                                 $cost = 0.470*$kmTransport;
-                                $request->sendFrais($db,null,'transport(voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
+                                $request->sendFrais($db,null,'transport (voiture)',$cost, null , $endDate, $idFicheFrais, 'F', null);
                             }
                         }
                     }
@@ -157,7 +157,7 @@ if(isset($_POST['submit'])){
                     
                     if(!empty($transportMontant) && isset($_FILES['transportFile'])){
                         $fileDownload = new fileDownload();
-                        $request->sendFrais($db, null, 'transport(train)', $transportMontant, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'transportFile'));
+                        $request->sendFrais($db, null, 'transport (train)', $transportMontant, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'transportFile'));
                     }
                 }
                 //si les champs hebergement on été remplies
@@ -193,6 +193,9 @@ if(isset($_POST['submit'])){
         //message erreur, les dates n'ont  pas été indiqué
         $_SESSION['error_msg_dashboard'] = "Les dates n'ont pas été indiqué";
     }
+    header('Location: dashboard.php');
+}
+else{
     header('Location: dashboard.php');
 }
 

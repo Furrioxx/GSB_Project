@@ -11,7 +11,7 @@
         <h2><?php echo $title; ?></h2>
         <span class="mb-3">Visiteurs</span>
     
-        <form action="../controller/fraisUser.php" method="post" enctype="multipart/form-data">
+        <form action="../controller/addFraisUser.php" method="post" enctype="multipart/form-data">
             <h2>Frais Forfait</h2>
             <div class="mb-3">
                 <label for="beginDate">Date de début : </label>
@@ -103,7 +103,8 @@
             </thead>
             <tbody>
                 <?php
-                include('../controller/ficheFraisUserView.php');
+                $ficheFrais = new ficheFrais();
+                $ficheFrais->displayFicheFrais($db);
                 ?>
             </tbody>
         </table>
