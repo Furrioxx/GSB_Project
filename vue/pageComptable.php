@@ -8,10 +8,32 @@
         <?php include('../vue/UserNav.php') ?>
     </nav>
 
-    <main>
+    <span>
         <h2><?php echo $title; ?></h2>
-        <p>comptable</p>
-    </main>
+        <p class="mb-3">comptable</p>
+
+        <h3>Fiche frais à traiter</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date de début</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Montant renseigné</th>
+                    <th scope="col">Nom du visiteur</th>
+                    <th scope="col">photo de profil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $ficheFrais = new ficheFrais();
+                $ficheFrais->displayFicheFrais($db,'comptable');
+                ?>
+            </tbody>
+        </table>
+
+    </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>
 </html>

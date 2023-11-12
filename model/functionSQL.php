@@ -63,7 +63,15 @@ class request{
     }
 
     public  function getCostSheet($db){
-        $query = "SELECT * FROM cost_sheet WHERE idUser =  '".$_SESSION['idUser']."'";
+        $query = "SELECT * FROM cost_sheet WHERE idUser =  '".$_SESSION['idUser']."' ORDER BY endDate DESC";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getCostSheetComptableNT($db){
+        $query = "SELECT idFicheFrais, montant_total, beginDate, endDate, statue, surname, `name`, ppLink FROM cost_sheet INNER JOIN users ON cost_sheet.idUser = users.id WHERE statue = 'NT'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchAll();
