@@ -52,6 +52,9 @@ body nav div .user-image {
 body nav div .user-image:hover {
   cursor: pointer;
 }
+.user-image-perso{
+  height: 50px;
+}
 body nav div .navUser {
   padding-top: 1em;
   display: none;

@@ -17,6 +17,14 @@ class request{
         return $resultArray;
     }
 
+    public function isTherePp($db){
+        $sql1 = "SELECT * FROM users WHERE id = '".$_SESSION['idUser']."'";
+        $result = $db->prepare($sql1);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
     public function createFicheFrais($db,$beginDate, $endDate){
         $query = "INSERT INTO cost_sheet VALUES(null, 0, '".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."', 'NT')";
         $result = $db->prepare($query);

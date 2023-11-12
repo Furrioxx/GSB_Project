@@ -8,10 +8,14 @@
         <?php include('../vue/UserNav.php') ?>
     </nav>
 
-    <main>
+    <span>
         <h2><?php echo $title; ?></h2>
-        <p>Admin</p>
-    </main>
+        <p class="mb-3">Admin</p>
+
+        <form action="../controller/addUser.php" method="post" enctype="multipart/form-data">
+
+        </form>
+    </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>
 </html>
