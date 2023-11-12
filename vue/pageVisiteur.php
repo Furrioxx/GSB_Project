@@ -11,7 +11,7 @@
         <h2><?php echo $title; ?></h2>
         <span class="mb-3">Visiteurs</span>
     
-        <form action="../controller/addFraisUser.php" method="post" enctype="multipart/form-data">
+        <form action="../controller/addFraisUser.php" method="post" enctype="multipart/form-data" onsubmit="return formValidation()">
             <h2>Frais Forfait</h2>
             <div class="mb-3">
                 <label for="beginDate">Date de début : </label>
@@ -52,29 +52,29 @@
             </div>
             <h3>Hébergement</h3>
             <div class="mb-3">
-                <input type="number" placeholder="Nombre de nuité" name="TimeLogement" class="form-control" >
+                <input type="number" placeholder="Nombre de nuité" name="TimeLogement" id="TimeLogement" class="form-control" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" placeholder="Montant de l'hébergement" name="priceLogement" class="form-control" >
+                <input type="number" step="0.01" placeholder="Montant de l'hébergement" id="priceLogement" name="priceLogement" class="form-control" >
             </div>
             <h3>Alimentation</h3>
             <div class="mb-3">
-                <input type="text" placeholder="Nombre de repas" name="restaurantTime" class="form-control" >
+                <input type="text" placeholder="Nombre de repas" id="restaurantTime" name="restaurantTime" class="form-control" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" placeholder="Montant de l'addition" name="restaurantPrice" class="form-control" >
+                <input type="number" step="0.01" placeholder="Montant de l'addition" id="restaurantPrice" name="restaurantPrice" class="form-control" >
             </div>
 
             <h3>Autre</h3>
             <div class="mb-3">
-                <input type="text" name ="libelleOther" placeholder ="libelle" class="form-control" >
+                <input type="text" name ="libelleOther" id="libellOther" placeholder ="libelle" class="form-control" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" name ="montantOther" placeholder ="montant" class="form-control" >
+                <input type="number" step="0.01" name ="montantOther" id="montantOther" placeholder ="montant" class="form-control" >
             </div>
             <div class="mb-3">
                 <label for="fileOther">Justificatifs : </label>
-                <input type="file" name ="fileOther" class="form-control" id="fileOther">
+                <input type="file" name ="fileOther" id="fileOther" class="form-control" id="fileOther">
             </div>
             <div class="mb-3">
                 <?php
@@ -85,6 +85,7 @@
             </div>
             <div class="mb-3">
                 <input type="submit" name ="submit" value ="valider" class="btn btn-primary">
+                <p class="err err-message"></p>
             </div>
         </form>
 
