@@ -1,3 +1,5 @@
+
+//nav bar clickable 
 const menuBtn = document.getElementById('menuBtn')
 const navUser = document.querySelector('.navUser')
 
@@ -15,6 +17,7 @@ menuBtn.onclick = function(){
     }
 }
 
+//radio input transport changement des champs à remplir
 const train = document.getElementById('train')
 const radios = document.querySelectorAll('.form-check-input')
 const transportDiv = document.querySelector('.transportDiv')
@@ -22,7 +25,7 @@ const transportDiv = document.querySelector('.transportDiv')
 for(let i = 0; i<radios.length; i++){
     radios[i].addEventListener('click', ()=>{
         if(train.checked){
-            transportDiv.innerHTML = '<input type="number" class="form-control" placeholder="Entrez le montant du transport" name="transportMontant"><Label>Justificatifs : </Label><input class="form-control" type="file" name="transportFile">'
+            transportDiv.innerHTML = '<input type="number" class="form-control" id="transportMontant" placeholder="Entrez le montant du transport" name="transportMontant"><Label>Justificatifs : </Label><input class="form-control" type="file" name="transportFile">'
         }
         else{
             transportDiv.innerHTML = '<input type="number" placeholder="Entrez le nombre de kilomètre parcouru" step="0.1" name="kmTransport" class="form-control">'

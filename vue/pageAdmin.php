@@ -10,7 +10,7 @@
 
     <main>
         <h2><?php echo $title; ?></h2>
-        <p>comptable</p>
+        <p>Admin</p>
     </main>
 </body>
 <script src="../dist/viewDashboard.js"></script>

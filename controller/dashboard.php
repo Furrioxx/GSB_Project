@@ -12,11 +12,14 @@ if(isset($_SESSION['name'])){
     }
     $valueDeco = 'Déconnexion';
     $title = "Bonjour " .   $_SESSION['name'];
-    if($_SESSION['statut'] == 0){
+    if($_SESSION['statut'] == 'visiteur'){
         include('../vue/pageVisiteur.php');
     }
-    else{
+    else if ($_SESSION['statut'] == 'comptable'){
         include('../vue/pageComptable.php');
+    }
+    else if($_SESSION['statut'] == 'admin'){
+        include('../vue/pageAdmin.php');
     }
 }
 else{

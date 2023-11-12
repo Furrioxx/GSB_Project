@@ -16,8 +16,6 @@ else{
     }
 }
 
-
-
 include('vue/pageAcceuil.php');
 ?>
 
