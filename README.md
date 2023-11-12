@@ -17,12 +17,10 @@
 
 TODO : 
 
-quand on clique sur une fiche frais on vois tous les frais de cette dernière !!
-
 mettre montant remboursé dans db cost_sheet
 
 formulaire de creation nouveau user (pour admin) +obtention d'un mot de passe temporaire (changmeent lors de la 1ere connexion)
 
-faire la gestion des pp
-
 pouvoir modifier les frais si non traité
+
+fix bug vérif form JS

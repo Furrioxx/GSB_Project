@@ -52,14 +52,18 @@ function formValidation(){
     const montantOther = document.getElementById('montantOther')
     const fileOther = document.getElementById('fileOther')
 
-    let isgood
+    let isgood = true
 
+    console.log(transportMontant)
     if(transportMontant != null){
+        console.log(transportFile.files.length + " " + transportMontant.value)
         if(transportMontant.value != '' &&  transportFile.files.length == 0){
+            console.log('test1')
             isgood = false
         }
         else if(transportFile.files.length != 0 && transportMontant.value == ''){
             isgood = false
+            console.log('test2')
         }
     }
     else if(TimeLogement.value != '' && priceLogement.value == ''){
