@@ -79,7 +79,15 @@ class request{
     }
 
     public function getAllCost($db, $idFicheFrais){
-        $query = "SELECT libelle, montant, timing, dateligne, statu, linkJustif, montant_total, statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $query = "SELECT id, libelle, montant, timing, dateligne, statu, linkJustif, montant_total, statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getPreciseCost($db, $idFrais){
+        $query = "SELECT * FROM cost WHERE id = '".$idFrais."'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchAll();

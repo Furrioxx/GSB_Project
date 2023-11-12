@@ -22,5 +22,3 @@ mettre montant remboursé dans db cost_sheet
 formulaire de creation nouveau user (pour admin) +obtention d'un mot de passe temporaire (changmeent lors de la 1ere connexion)
 
 pouvoir modifier les frais si non traité
-
-fix bug vérif form JS

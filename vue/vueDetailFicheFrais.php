@@ -17,7 +17,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Libelle</th>
-                    <th scope="col">Durée</th>
+                    <th scope="col">Durée/Distance</th>
                     <th scope="col">Montant</th>
                     <th scope="col">Date</th>
                     <th scope="col">Statut</th>
