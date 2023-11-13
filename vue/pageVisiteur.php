@@ -15,11 +15,11 @@
             <h2>Frais Forfait</h2>
             <div class="mb-3">
                 <label for="beginDate">Date de début : </label>
-                <input type="date" placeholder="Date de début" name="beginDate" class="form-control" id="beginDate" required>
+                <input type="date" placeholder="Date de début" name="beginDate" class="form-control p-2" id="beginDate" required>
             </div>
             <div class="mb-3">
                 <label for="endDate">Date de fin : </label>
-                <input type="date" placeholder="Date de Fin" name="endDate" class="form-control" id="endDate" required>
+                <input type="date" placeholder="Date de Fin" name="endDate" class="form-control p-2" id="endDate" required>
             </div>
             <h3>Transport</h3>
             <div class="mb-3">
@@ -48,33 +48,33 @@
                 <input type="radio" name="transport" class="form-check-input" value="train" id="train">
             </div>
             <div class="mb-3 transportDiv">
-                <input type="number" placeholder="Entrez le nombre de kilomètre parcouru" step="0.1" name="kmTransport" class="form-control">
+                <input type="number" placeholder="Entrez le nombre de kilomètre parcouru" step="0.1" name="kmTransport" class="form-control p-2">
             </div>
             <h3>Hébergement</h3>
             <div class="mb-3">
-                <input type="number" placeholder="Nombre de nuité" name="TimeLogement" id="TimeLogement" class="form-control" >
+                <input type="number" placeholder="Nombre de nuité" name="TimeLogement" id="TimeLogement" class="form-control p-2" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" placeholder="Montant de l'hébergement" id="priceLogement" name="priceLogement" class="form-control" >
+                <input type="number" step="0.01" placeholder="Montant de l'hébergement" id="priceLogement" name="priceLogement" class="form-control p-2" >
             </div>
             <h3>Alimentation</h3>
             <div class="mb-3">
-                <input type="text" placeholder="Nombre de repas" id="restaurantTime" name="restaurantTime" class="form-control" >
+                <input type="text" placeholder="Nombre de repas" id="restaurantTime" name="restaurantTime" class="form-control p-2" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" placeholder="Montant de l'addition" id="restaurantPrice" name="restaurantPrice" class="form-control" >
+                <input type="number" step="0.01" placeholder="Montant de l'addition" id="restaurantPrice" name="restaurantPrice" class="form-control p-2" >
             </div>
 
             <h3>Autre</h3>
             <div class="mb-3">
-                <input type="text" name ="libelleOther" id="libellOther" placeholder ="libelle" class="form-control" >
+                <input type="text" name ="libelleOther" id="libellOther" placeholder ="libelle" class="form-control p-2" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" name ="montantOther" id="montantOther" placeholder ="montant" class="form-control" >
+                <input type="number" step="0.01" name ="montantOther" id="montantOther" placeholder ="montant" class="form-control p-2" >
             </div>
             <div class="mb-3">
                 <label for="fileOther">Justificatifs : </label>
-                <input type="file" name ="fileOther" id="fileOther" class="form-control" id="fileOther">
+                <input type="file" name ="fileOther" id="fileOther" class="form-control p-2" id="fileOther">
             </div>
             <div class="mb-3">
                 <?php
