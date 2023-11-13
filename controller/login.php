@@ -10,16 +10,32 @@ if(isset($_POST['submit'])){
         $result = $fucntionSQL->getUser($db);
         if(!empty($result)){
             foreach ($result as $key => $value) {
-                if(password_verify($_POST['password'], $value['password'])){
-                    $_SESSION['name'] = $value['name'];
-                    $_SESSION['idUser'] = $value['id'];
-                    $_SESSION['statut'] = $value['statut'];
-                    $_SESSION['surname'] = $value['surname'];
-                    header("Location: dashboard.php");
+                if(strlen($value['password']) > 8){
+                    if(password_verify($_POST['password'], $value['password'])){
+                        $_SESSION['name'] = $value['name'];
+                        $_SESSION['idUser'] = $value['id'];
+                        $_SESSION['statut'] = $value['statut'];
+                        $_SESSION['surname'] = $value['surname'];
+                        header("Location: dashboard.php");
+                    }
+                    else{
+                        $_SESSION['error_msg'] = "L'indentifiant ou le mot de passe est incorrect !!";
+                        header('Location: ../vue/connexion.php');
+                    }
                 }
                 else{
-                    $_SESSION['error_msg'] = "L'indentifiant ou le mot de passe est incorrect !!";
-                    header('Location: ../vue/connexion.php');
+                    if($_POST['password'] == $value['password']){
+                        $_SESSION['name'] = $value['name'];
+                        $_SESSION['idUser'] = $value['id'];
+                        $_SESSION['statut'] = $value['statut'];
+                        $_SESSION['surname'] = $value['surname'];
+                        $_SESSION['isFirstConnexion'] = true;
+                        header("Location: dashboard.php");
+                    }
+                    else{
+                        $_SESSION['error_msg'] = "L'indentifiant ou le mot de passe est incorrect !!";
+                        header('Location: ../vue/connexion.php');
+                    }
                 }
             }
         }

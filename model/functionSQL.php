@@ -121,6 +121,12 @@ class request{
         $resultArray = $result->fetchAll();
         return $resultArray;
     }
+
+    public function updatePassword($db, $newPassword, $id){
+        $query = "UPDATE users SET password = '".$newPassword."' WHERE id = '".$id."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>

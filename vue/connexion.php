@@ -39,6 +39,13 @@ session_start();
             </div>
             <div>
                 <ul>
+                    <li>login : lola.genevay@gmail.com</li>
+                    <li>mdp : genevay1234</li>
+                    <li>statut : visiteur médical</li>
+                </ul>
+            </div>
+            <div>
+                <ul>
                     <li>login : pierrick.duchamps@gmail.com</li>
                     <li>mdp : duchamps1234</li>
                     <li>statut : comptable</li>
