@@ -29,7 +29,18 @@ class detailFicheFrais{
                         echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
                     }
                     else{
-                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                        if($value['libelle'] == "transport (voiture)"){
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' km</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                        }
+                        else if($value['libelle'] == "logement"){
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' nuits</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                        }
+                        else if($value['libelle'] == "restauration"){
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' repas</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                        }
+                        else{
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                        }
                     }
                 }
                 else{
