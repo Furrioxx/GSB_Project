@@ -4,6 +4,9 @@
 * mdp : bourdin1234
 * statut : visiteur médical
 
+* login : lola.genevay@gmail.com
+* mdp : genevay1234
+* statut : visiteur médical
 
 ### Comptable : 
 * login : pierrick.duchamps@gmail.com
@@ -19,6 +22,6 @@ TODO :
 
 mettre montant remboursé dans db cost_sheet
 
-formulaire de creation nouveau user (pour admin) +obtention d'un mot de passe temporaire (changmeent lors de la 1ere connexion)
+traitement des fiche frais (comptable)
 
 pouvoir modifier les frais si non traité
