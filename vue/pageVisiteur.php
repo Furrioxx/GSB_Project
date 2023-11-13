@@ -104,7 +104,7 @@
             </thead>
             <tbody>
                 <?php
-                $ficheFrais = new ficheFrais();
+                $ficheFrais = new toolsDisplay();
                 $ficheFrais->displayFicheFrais($db,'visiteur');
                 ?>
             </tbody>

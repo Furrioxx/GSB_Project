@@ -93,6 +93,34 @@ class request{
         $resultArray = $result->fetchAll();
         return $resultArray;
     }
+
+    public function tempPasswordGen($length){
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+     
+        return $randomString;
+    }
+
+    public function addUser($db, $nameUser, $surnameUser, $loginUser, $adressUser, $cpUser, $villeUser, $dateUser, $statutUser, $cvCarUser){
+        $request = new request();
+        $tempPassword = $request->tempPasswordGen(8);
+        $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$tempPassword."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '')";
+        $result = $db->prepare($query);
+        $result->execute();
+        return $tempPassword;
+    }
+
+    public function getAllUser($db){
+        $query = "SELECT * FROM users WHERE statut = 'visiteur' OR statut = 'comptable'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
 }
 
 ?>

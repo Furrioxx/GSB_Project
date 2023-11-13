@@ -3,7 +3,7 @@ session_start();
 include('../model/config.php');
 include('../model/functionSQL.php');
 
-class ficheFrais{
+class toolsDisplay{
     public function __construct()
     {
         
@@ -33,12 +33,24 @@ class ficheFrais{
             foreach($request->getCostSheetComptableNT($db) as $key => $value){
                 //si le visiteur n'a pas de pp
                 if($value['ppLink'] == ''){
-                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>'.$value['name']." ".$value['surname'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"<td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>'.$value['name']." ".$value['surname'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"><td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
                 }
                 else{
                     echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>'.$value['name']." ".$value['surname'].'</td><td><img src="'.$value['ppLink'].'" alt="user image" style="height:50px;"></td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
                 }
                 
+            }
+        }
+    }
+
+    public function displayUsers($db){
+        $request = new request;
+        foreach ($request->getAllUser($db) as $key => $value) {
+            if($value['ppLink'] == ''){
+                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['password'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"></td></tr>';
+            }
+            else{
+                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['password'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="'.$value['ppLink'].'" alt="user image" style="height:50px;"></td></tr>';
             }
         }
     }
