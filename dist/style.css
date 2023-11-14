@@ -58,14 +58,13 @@ body nav div .user-image:hover {
 body nav div .navUser {
   padding-top: 1em;
   display: none;
-  position: fixed;
+  position: absolute;
   flex-direction: column;
   align-items: center;
   z-index: 10;
-  right: 0;
+  right: 0px;
   top: 126px;
-  width: 150px;
-  background-color: red;
+  width: 370px;
   height: 170px;
   border-radius: 0 0 0 3px;
   margin-right: 0;
