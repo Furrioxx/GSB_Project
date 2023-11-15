@@ -9,6 +9,11 @@ if(isset($_SESSION['name'])){
         $idFicheFrais = $_POST['idFicheFrais'];
         include('../vue/vueDetailFicheFrais.php');
     }
+    else if($_SESSION['idFicheFrais']){
+        $idFicheFrais = $_SESSION['idFicheFrais'];
+        unset($_SESSION['idFicheFrais']);
+        include('../vue/vueDetailFicheFrais.php');
+    }
     else{
         header('Location: dashboard.php');
     }

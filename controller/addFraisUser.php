@@ -48,7 +48,6 @@ if(isset($_SESSION['name'])){
                     else{
                         
                         if(!empty($transportMontant) && isset($_FILES['transportFile'])){
-                            include('../controller/tools.php');
                             $fileDownload = new tools();
                             $request->sendFrais($db, null, 'transport (train)', $transportMontant, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'transportFile'));
                         }
@@ -67,7 +66,6 @@ if(isset($_SESSION['name'])){
                     }
                     //si le champs autre a été remplies
                     if(!empty($libelleOther) &&  !empty($montantOther) && isset($_FILES['fileOther'])){
-                        include('../controller/tools.php');
                         $fileDownload = new tools();
                         $request->sendFrais($db, null, $libelleOther, $montantOther, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'fileOther'));   
                     }
