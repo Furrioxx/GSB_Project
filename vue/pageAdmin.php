@@ -66,7 +66,8 @@
             </thead>
             <tbody>
                 <?php
-                $ficheFrais = new toolsDisplay();
+                include('../controller/tools.php');
+                $ficheFrais = new tools();
                 $ficheFrais->displayUsers($db);
                 ?>
             </tbody>

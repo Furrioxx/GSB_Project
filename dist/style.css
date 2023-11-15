@@ -191,17 +191,17 @@ h3{
 /*# sourceMappingURL=style.css.map */
 
 @media screen and (max-width: 850px) {
-  h1{
+  h1, .titleIndex{
     font-size: 80px !important;
   }
 }
 @media screen and (max-width: 730px) {
-  h1{
+  h1, .titleIndex{
     font-size: 60px !important;
   }
 }
 @media screen and (max-width: 600px) {
-  h1{
+  h1, .titleIndex{
     font-size: 40px !important;
   }
 }

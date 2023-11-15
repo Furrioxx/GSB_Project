@@ -5,9 +5,10 @@ include('../model/functionSQL.php');
 
 if(isset($_SESSION['name'])){
     //si on viens de pageVisiteur/Comptable et qu'on a cliqué sur le bouton 'Voir plus'
-    if(isset($_POST['seeFicheFrais'])){
-        $idFicheFrais = $_POST['idFicheFrais'];
-        include('../vue/vueDetailFicheFrais.php');
+    if(isset($_POST['updateFrais'])){
+        $idFrais = $_POST['idFrais'];
+        $libelleFrais = $_POST['libelleFrais'];
+        include('../vue/vuePreciseFrais.php');
     }
     else{
         header('Location: dashboard.php');
@@ -16,5 +17,3 @@ if(isset($_SESSION['name'])){
 else{
     header('Location: dashboard.php');
 }
-
-?>

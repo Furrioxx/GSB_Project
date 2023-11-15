@@ -20,8 +20,5 @@
     <div class="flexContainer">
         <p class="titleIndex">Fiche de frais GSB</p>
     </div>
-    
-    <img src="src/cloud.png" alt="cloud background" class="cloud">
-    <img src="src/cloud.png" alt="cloud background" class="cloud1">
 </body>
 </html>
