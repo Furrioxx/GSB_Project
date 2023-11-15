@@ -24,12 +24,4 @@ mettre montant remboursé dans db cost_sheet
 
 traitement des fiche frais (comptable)
 
-pouvoir modifier les frais si non traité
-
-quand on veut retourner en arrière ou quand erreur dasn modif frais, retour a la page preciseFrais (utilisation session pour idficheFrais et uset la session quand arrive sur allFraisdisplay ou dashboard)
-
-faire la vérif que au moins 1 des champs de modify soit remplie
-
-mettre le euro dans détail des frais
-
 pouvoir modifier la date des fiches frais

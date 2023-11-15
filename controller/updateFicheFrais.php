@@ -112,7 +112,7 @@ if(isset($_SESSION['name'])){
                             $request->updateFrais($db, $newLibelleOther, $actualMontant, $actualTiming, $tools->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'newJustifOther'), $idFrais);
                         }
                         else if(!empty($_POST['newPriceOther']) && $_FILES['newJustifOther']["error"] == 0){
-                            $request->updateFrais($db, $newLibelleOther, $actualMontant, $actualTiming, $tools->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'newJustifOther'), $idFrais);
+                            $request->updateFrais($db, $actualLibelle, $newPriceOther, $actualTiming, $tools->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'newJustifOther'), $idFrais);
                         }
                         else if(!empty($_POST['newLibelleOther'])){
                             $request->updateFrais($db, $newLibelleOther, $actualMontant, $actualTiming, $actualLinkJustif, $idFrais);
