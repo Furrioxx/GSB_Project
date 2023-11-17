@@ -59,7 +59,6 @@
                     <th scope="col">id</th>
                     <th scope="col">Nom</th>
                     <th scope="col">login</th>
-                    <th scope="col">password</th>
                     <th scope="col">Date d'embauche</th>
                     <th scope="col">photo de profile</th>
                 </tr>
