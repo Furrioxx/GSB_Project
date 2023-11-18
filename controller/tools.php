@@ -15,16 +15,15 @@ class tools{
                     $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-7" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 12l-2 3"></path><path d="M12 7v5"></path></svg>';
                     echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>-</td><td>'.$icon.' En attente</td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
                 }
-                //si les fiche frais sont accepté
-                else if($value['statue'] == 'A'){
-
+                //si les fiche frais sont traité
+                else if($value['statue'] == 'T'){
+                    $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>';
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>'.$value['refund_total'].' €</td><td style="color:green;">'.$icon.' Traité</td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
                 }
-                //si les fiche frais sont refusées
-                else if($value['statue'] == 'R'){
-                    
-                }
+                
             }
         }
+        
         else if ($role == 'comptable'){
             foreach($request->getCostSheetComptableNT($db) as $key => $value){
                 //si le visiteur n'a pas de pp
@@ -73,6 +72,74 @@ class tools{
         }
     }
 
+    public function displayValidationHF($db, $idFicheFrais){
+        $request = new  request();
+        $allHFCost = $request->getAllHFCost($db, $idFicheFrais);
+        if(count($allHFCost) == 2){
+            echo '<div class="dbInfos flex-fill"> <h4>Montant renseigné</h4> <div class="mt-3"><label>'.$allHFCost[0]['libelle'].' : </label><input type="text" value="'.$allHFCost[0]['montant'].' €" class="form-control" disabled> </div> <div class="mt-3"><label>'.$allHFCost[1]['libelle'].' : </label><input type="text" value="'.$allHFCost[1]['montant'].' €" class="form-control" disabled> </div></div> <div class="modifyInfo flex-fill"> <h4>Montant à rembourser</h4> <form action="validateFrais.php" method="post" enctype="multipart/form-data"> <div class="mt-3"> <label></label><input type="number" name="refundMontantTransport" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <label></label><input type="number" name="refundMontantOther" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""> </form></div>';
+        }
+        else if(count($allHFCost)== 1){
+            if($allHFCost[0]['libelle'] == 'transport (train)'){
+                $nameInput = "refundMontantTransport";
+            }
+            else{
+                $nameInput = "refundMontantOther";
+            }
+            echo '<div class="dbInfos flex-fill"> <h4>Montant renseigné</h4> <div class="mt-3"><label>'.$allHFCost[0]['libelle'].' : </label><input type="text" value="'.$allHFCost[0]['montant'].' €" class="form-control" disabled> </div> </div> <div class="modifyInfo flex-fill"> <h4>Montant à rembourser</h4> <form action="validateFrais.php" method="post" enctype="multipart/form-data"> <div class="mt-3"> <label></label><input type="number" name="'.$nameInput.'" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""> </form></div>';
+        }
+        else{
+            echo '<form action="validateFrais.php" method="post" enctype="multipart/form-data"><div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""></form>';
+        }
+        
+    }
+
+    public function validateFrais($db, $idFicheFrais, $refundMontantTrain, $refundMontantOther){
+        $request = new request();
+        $allFrais = $request->getAllCost($db, $idFicheFrais);
+        foreach ($allFrais as $key => $value) {
+            if($value['libelle'] == 'transport (voiture)'){
+                $request->setRefundMontant($db, $value['id'], $value['montant']);
+            }
+            else if ($value['libelle'] == 'transport (train)'){
+                $request->setRefundMontant($db, $value['id'], $refundMontantTrain);
+            }
+            else if($value['libelle'] == 'logement'){
+                $refundMontant = self::maxRefundMontant($value['libelle'], $value['timing'], $value['montant']);
+                $request->setRefundMontant($db, $value['id'], $refundMontant);
+            }
+            else if ($value['libelle'] == 'restauration'){
+                $refundMontant = self::maxRefundMontant($value['libelle'], $value['timing'], $value['montant']);
+                $request->setRefundMontant($db, $value['id'], $refundMontant);
+            }
+            else{
+                $request->setRefundMontant($db, $value['id'], $refundMontantOther);
+            }
+        }
+        $request->updateValidateCostSheet($db, $idFicheFrais);
+
+    }
+
+    public function maxRefundMontant($libelle, $timing, $montant){
+        if($libelle == 'logement'){
+            $maxPrice1night = 30;
+            if($montant / $timing <= $maxPrice1night){
+                return $montant;
+            }
+            else{
+                return $maxPrice1night * $timing;
+            }
+        }
+        else if($libelle == 'restauration'){
+            $maxPrice1Meal = 18;
+            if($montant / $timing <= $maxPrice1Meal){
+                return $montant;
+            }
+            else{
+                return $maxPrice1Meal * $timing;
+            }
+        }
+    }
+
     public function displayAllFraisVisiteur($db, $idFicheFrais){
         $request = new request();
         $allFrais = $request->getAllCost($db, $idFicheFrais);
@@ -87,46 +154,52 @@ class tools{
             }
             if($value['statue'] == 'NT'){
                 $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-7" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 12l-2 3"></path><path d="M12 7v5"></path></svg>';
+                $isTraité = "<span> En attente</span>";
+                $refundMontant = "-";
                 //si le frais est forfaitaire
                 if($value['statu'] == "F"){
                     if($value['linkJustif'] != ''){
-                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
+                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
                     }
                     else{
                         if($value['libelle'] == "transport (voiture)"){
-                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' km</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' km</td><td>'.$value['montant'].' €</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
                         }
                         else if($value['libelle'] == "logement"){
-                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' nuits</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' nuits</td><td>'.$value['montant'].' €</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
                         }
                         else if($value['libelle'] == "restauration"){
-                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' repas</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].' repas</td><td>'.$value['montant'].' €</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
                         }
                         else{
-                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
+                            echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td><td>'.$isModifyButton.'</td></tr>';
                         }
                     }
                 }
                 else{
-                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Hors Forfait</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>-</td><td>'.$value['dateligne'].'</td><td>Hors Forfait</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
                 }
             }
             else{
+                $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>';
+                $isTraité = "<span style='color:green;'> Traité</span>";
+                $refundMontant = $value['refund_total'] . " €";
                 if($value['statu'] == "F"){
                     if($value['linkJustif'] != ''){
-                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td></tr>';
+                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['refund_montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td></tr>';
                     }
                     else{
-                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td></tr>';
+                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['refund_montant'].' €</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td>-</td></tr>';
                     }
                 }
                 else{
-                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['dateligne'].'</td><td>Hors Forfait</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td></tr>';
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['refund_montant'].' €</td><td>'.$value['dateligne'].'</td><td>Hors Forfait</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td></tr>';
                 }
             }
         }
         echo "<p class='mb-3'>Montant total : ".$montantTotal." €</p>";
-        echo "<p class='mb-3'>Etat de la fiche frais : ".$icon." En attente</p>";      
+        echo "<p class='mb-3'>Montant Remboursé : ".$refundMontant."</p>";
+        echo "<p class='mb-3'>Etat de la fiche frais : ".$icon.$isTraité."</p>";      
     }
 
     public function downloadImage($destPath, $inputName){

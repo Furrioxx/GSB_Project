@@ -13,6 +13,7 @@ if(isset($_SESSION['name'])){
         $idFicheFrais = $_SESSION['idFicheFrais'];
         unset($_SESSION['idFicheFrais']);
         include('../vue/vueDetailFicheFrais.php');
+        
     }
     else{
         header('Location: dashboard.php');

@@ -47,7 +47,7 @@ class request{
 
 
     public function sendFrais($db, $id, $libelle, $montant, $timing ,$dateligne, $idficheFrais, $statu, $justif){
-        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."', '".$justif."')";
+        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', -1 , '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."', '".$justif."')";
         $result = $db->prepare($query);
         $result->execute();
     }  
@@ -58,6 +58,16 @@ class request{
         $result->execute();
         $resultArray = $result->fetch();
         $query = "UPDATE cost_sheet SET montant_total = '".$resultArray['total_price']."' WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
+
+    public function updateValidateCostSheet($db, $idFicheFrais){
+        $query = "SELECT SUM(refund_montant) as total_refund_montant FROM cost WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        $query = "UPDATE cost_sheet SET refund_total = '".$resultArray['total_refund_montant']."', statue = 'T' WHERE idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
     }
@@ -79,7 +89,15 @@ class request{
     }
 
     public function getAllCost($db, $idFicheFrais){
-        $query = "SELECT id, libelle, montant, timing, dateligne, statu, linkJustif, montant_total, statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $query = "SELECT id, libelle, montant, refund_montant, timing, dateligne, statu, linkJustif , montant_total, refund_total ,  statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getAllHFCost($db, $idFicheFrais){
+        $query = "SELECT * FROM cost WHERE idFicheFrais = '".$idFicheFrais."' AND statu = 'HF'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchAll();
@@ -129,6 +147,12 @@ class request{
     
     public function updateFrais($db, $libelle, $cost ,$timing, $linkJustif, $idFrais){
         $query = "UPDATE cost SET montant = '".$cost."', timing = '".$timing."', libelle = '".$libelle."', linkJustif = '".$linkJustif."' WHERE id = '".$idFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
+
+    public function setRefundMontant($db, $idFrais, $refundMontant){
+        $query = "UPDATE cost SET refund_montant ='" .$refundMontant."' WHERE id='".$idFrais."'";
         $result = $db->prepare($query);
         $result->execute();
     }

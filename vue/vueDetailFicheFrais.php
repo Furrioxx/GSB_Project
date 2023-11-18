@@ -19,6 +19,7 @@
                     <th scope="col">Libelle</th>
                     <th scope="col">Durée/Distance</th>
                     <th scope="col">Montant</th>
+                    <th scope="col">Montant Remboursé</th>
                     <th scope="col">Date</th>
                     <th scope="col">Statut</th>
                     <th scope="col">Justificatifs</th>
@@ -27,11 +28,19 @@
             <tbody>
                 <?php
                     include('../controller/tools.php');
-                    $detailFicheFrais = new tools();
-                    $detailFicheFrais->displayAllFraisVisiteur($db, $idFicheFrais) 
+                    $tools = new tools();
+                    $tools->displayAllFraisVisiteur($db, $idFicheFrais) 
                 ?>
             </tbody>
         </table>
+
+        <div class="d-flex mb-3 justify-content-between gap-3 flex-wrap">
+        <?php
+        if($_SESSION['statut'] == "comptable"){
+            $tools->displayValidationHF($db, $idFicheFrais);
+        }
+        ?>
+        </div>
     </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>
