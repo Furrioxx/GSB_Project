@@ -138,7 +138,7 @@ if(isset($_SESSION['name'])){
         }
     }
     else{
-        header('Location: detailFicheFrais.php');
+        header('Location: dashboard.php');
     }
 }
 else{

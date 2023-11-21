@@ -17,6 +17,14 @@ class request{
         return $resultArray;
     }
 
+    public function getComptableName($db, $idUser){
+        $query = "SELECT * FROM users WHERE id = '".$idUser."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
     public function isTherePp($db){
         $sql1 = "SELECT * FROM users WHERE id = '".$_SESSION['idUser']."'";
         $result = $db->prepare($sql1);
@@ -26,7 +34,7 @@ class request{
     }
 
     public function createFicheFrais($db,$beginDate, $endDate){
-        $query = "INSERT INTO cost_sheet VALUES(null, 0, '".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."', 'NT')";
+        $query = "INSERT INTO cost_sheet VALUES(null, 0, 0,'".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."', null ,  'NT')";
         $result = $db->prepare($query);
         $result->execute();
         $query2 = "SELECT * FROM cost_sheet WHERE idUser = '".$_SESSION['idUser']."'";
@@ -47,7 +55,7 @@ class request{
 
 
     public function sendFrais($db, $id, $libelle, $montant, $timing ,$dateligne, $idficheFrais, $statu, $justif){
-        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."', '".$justif."')";
+        $query = "INSERT INTO cost VALUES('".$id."','".$libelle."','".$montant."', null , '".$timing."' ,'".$dateligne."','".$idficheFrais."','".$statu."', '".$justif."')";
         $result = $db->prepare($query);
         $result->execute();
     }  
@@ -58,6 +66,16 @@ class request{
         $result->execute();
         $resultArray = $result->fetch();
         $query = "UPDATE cost_sheet SET montant_total = '".$resultArray['total_price']."' WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
+
+    public function updateValidateCostSheet($db, $idFicheFrais, $idUserValidation){
+        $query = "SELECT SUM(refund_montant) as total_refund_montant FROM cost WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        $query = "UPDATE cost_sheet SET refund_total = '".$resultArray['total_refund_montant']."', statue = 'T' , idUserValidation = '".$idUserValidation."' WHERE idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
     }
@@ -79,7 +97,15 @@ class request{
     }
 
     public function getAllCost($db, $idFicheFrais){
-        $query = "SELECT id, libelle, montant, timing, dateligne, statu, linkJustif, montant_total, statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $query = "SELECT id, libelle, montant, refund_montant, timing, dateligne, statu, linkJustif , montant_total, refund_total ,  statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getAllHFCost($db, $idFicheFrais){
+        $query = "SELECT * FROM cost WHERE idFicheFrais = '".$idFicheFrais."' AND statu = 'HF'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchAll();
@@ -106,8 +132,7 @@ class request{
     }
 
     public function addUser($db, $nameUser, $surnameUser, $loginUser, $adressUser, $cpUser, $villeUser, $dateUser, $statutUser, $cvCarUser){
-        $request = new request();
-        $tempPassword = $request->tempPasswordGen(8);
+        $tempPassword = self::tempPasswordGen(8);
         $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$tempPassword."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '')";
         $result = $db->prepare($query);
         $result->execute();
@@ -130,6 +155,12 @@ class request{
     
     public function updateFrais($db, $libelle, $cost ,$timing, $linkJustif, $idFrais){
         $query = "UPDATE cost SET montant = '".$cost."', timing = '".$timing."', libelle = '".$libelle."', linkJustif = '".$linkJustif."' WHERE id = '".$idFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
+
+    public function setRefundMontant($db, $idFrais, $refundMontant){
+        $query = "UPDATE cost SET refund_montant ='" .$refundMontant."' WHERE id='".$idFrais."'";
         $result = $db->prepare($query);
         $result->execute();
     }

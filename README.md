@@ -20,8 +20,11 @@
 
 TODO : 
 
-mettre montant remboursé dans db cost_sheet
+décrire la logique de validation des fiches frais dnas le cahier des charges: 
+ - le comptable doit valider manuellement les frais qui possèdent un justificatif
+ - puis les autres champs sont traité automatiquement en reboursant le maximum possible ou la somme renseigné
 
-traitement des fiche frais (comptable)
+pouvoir ajouter un commentaire au frais validé (HF)
 
-pouvoir modifier la date des fiches frais
+- pouvoir aajouter une pp à son compte/ modifier
+- pouvoir modifier un user et le désactiver
