@@ -122,7 +122,7 @@ class tools{
 
     public function maxRefundMontant($libelle, $timing, $montant){
         if($libelle == 'logement'){
-            $maxPrice1night = 30;
+            $maxPrice1night = 65;
             if($montant / $timing <= $maxPrice1night){
                 return $montant;
             }
@@ -131,7 +131,7 @@ class tools{
             }
         }
         else if($libelle == 'restauration'){
-            $maxPrice1Meal = 18;
+            $maxPrice1Meal = 25;
             if($montant / $timing <= $maxPrice1Meal){
                 return $montant;
             }
