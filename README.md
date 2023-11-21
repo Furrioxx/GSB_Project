@@ -24,4 +24,4 @@ mettre montant remboursé dans db cost_sheet
 
 traitement des fiche frais (comptable)
 
-pouvoir modifier les frais si non traité
+pouvoir modifier la date des fiches frais

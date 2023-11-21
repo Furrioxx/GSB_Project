@@ -74,7 +74,7 @@
             </div>
             <div class="mb-3">
                 <label for="fileOther">Justificatifs : </label>
-                <input type="file" name ="fileOther" id="fileOther" class="form-control p-2" id="fileOther">
+                <input type="file" name ="fileOther" id="fileOther" class="form-control p-2">
             </div>
             <div class="mb-3">
                 <?php
@@ -104,7 +104,8 @@
             </thead>
             <tbody>
                 <?php
-                $ficheFrais = new toolsDisplay();
+                include('../controller/tools.php');
+                $ficheFrais = new tools();
                 $ficheFrais->displayFicheFrais($db,'visiteur');
                 ?>
             </tbody>

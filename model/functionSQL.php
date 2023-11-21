@@ -127,6 +127,12 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+    
+    public function updateFrais($db, $libelle, $cost ,$timing, $linkJustif, $idFrais){
+        $query = "UPDATE cost SET montant = '".$cost."', timing = '".$timing."', libelle = '".$libelle."', linkJustif = '".$linkJustif."' WHERE id = '".$idFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>

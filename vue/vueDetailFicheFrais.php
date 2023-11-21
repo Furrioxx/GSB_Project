@@ -26,8 +26,9 @@
             </thead>
             <tbody>
                 <?php
-                   $detailFicheFrais = new detailFicheFrais();
-                   $detailFicheFrais->displayAllFraisVisiteur($db, $idFicheFrais) 
+                    include('../controller/tools.php');
+                    $detailFicheFrais = new tools();
+                    $detailFicheFrais->displayAllFraisVisiteur($db, $idFicheFrais) 
                 ?>
             </tbody>
         </table>

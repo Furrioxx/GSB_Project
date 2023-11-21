@@ -27,7 +27,8 @@
             </thead>
             <tbody>
                 <?php
-                $ficheFrais = new toolsDisplay();
+                include('../controller/tools.php');
+                $ficheFrais = new tools();
                 $ficheFrais->displayFicheFrais($db,'comptable');
                 ?>
             </tbody>
