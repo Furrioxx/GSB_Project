@@ -19,7 +19,7 @@ class tools{
                 else if($value['statue'] == 'T'){
                     $ComptableInfo = $request->getComptableName($db, $value['idUserValidation']);
                     $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>';
-                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>'.$value['refund_total'].' €</td><td style="color:green;">'.$icon.' Traité par '.$ComptableInfo[0]['name']. ' ' .$ComptableInfo[0]['surname  '].'</td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>'.$value['refund_total'].' €</td><td style="color:green;">'.$icon.' Traité par '.$ComptableInfo[0]['name']. ' ' .$ComptableInfo[0]['surname'].'</td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
                 }
                 
             }
@@ -297,5 +297,21 @@ class tools{
         }
 
         return $cost;
+    }
+
+    public function verifRefundMontant($db, $refundMontantOther, $refundMontantTransport, $idFicheFrais){
+        $request = new request();
+        $allcost = $request->getAllCost($db, $idFicheFrais);
+        if($refundMontantOther != null || $refundMontantTransport != null){
+            foreach ($allcost as $key => $value) {
+                if($refundMontantOther > $value['montant'] || $refundMontantTransport > $value['montant']){
+                    return false;
+                }
+            } 
+            return true;
+        }
+        else{
+            return true;
+        }
     }
 }

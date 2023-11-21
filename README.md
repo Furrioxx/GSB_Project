@@ -20,17 +20,11 @@
 
 TODO : 
 
-
-
-pouvoir modifier un user et le désactiver
-
-pouvoir modifier la date des fiches frais
-
-
 décrire la logique de validation des fiches frais dnas le cahier des charges: 
  - le comptable doit valider manuellement les frais qui possèdent un justificatif
  - puis les autres champs sont traité automatiquement en reboursant le maximum possible ou la somme renseigné
 
 pouvoir ajouter un commentaire au frais validé (HF)
 
-pouvoir savoir qui a traité la cost sheet
+- pouvoir aajouter une pp à son compte/ modifier
+- pouvoir modifier un user et le désactiver

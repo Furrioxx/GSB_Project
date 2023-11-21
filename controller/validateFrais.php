@@ -19,9 +19,16 @@ if(isset($_SESSION['name'])){
         else{
             $refundMontantOther = null;
         }
+        $_SESSION['idFicheFrais'] = $idFicheFrais;
         $tools = new tools();
-        $tools->validateFrais($db, $idFicheFrais, $refundMontantTransport, $refundMontantOther); 
-        header('Location: dashboard.php');
+        if($tools->verifRefundMontant($db, $refundMontantOther, $refundMontantTransport, $idFicheFrais)){   
+            $tools->validateFrais($db, $idFicheFrais, $refundMontantTransport, $refundMontantOther); 
+            header('Location: dashboard.php');
+        }
+        else{
+            echo 'test';
+        }
+        
     }
     else{
         header('Location: dashboard.php');
