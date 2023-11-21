@@ -20,17 +20,22 @@
         <path d="M4 18l16 0"></path>
     </svg>
     <div class="navUser">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light navCo">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <a class="navbar-brand" href="#"><p><?php echo $_SESSION['name'] . " " . $_SESSION['surname']?></p></a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#"> <form action="../index.php" method="get">
             <input type="submit" name="deco" value="Déconnexion" class="deo-btn">
+        </form></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"> <form action="" method="get">
+            <input type="submit" name="" value="Profil" class="deo-btn">
         </form></a>
         </li>
       </ul>
