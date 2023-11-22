@@ -25,6 +25,4 @@ décrire la logique de validation des fiches frais dnas le cahier des charges:
  - puis les autres champs sont traité automatiquement en reboursant le maximum possible ou la somme renseigné
 
 pouvoir ajouter un commentaire au frais validé (HF)
-
-- pouvoir aajouter une pp à son compte/ modifier
 - pouvoir modifier un user et le désactiver

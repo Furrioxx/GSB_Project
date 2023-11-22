@@ -206,3 +206,36 @@ h3{
 .navCo{
   background-color: #2c3d5577;
 }
+.imgContainer{
+  height: 200px;
+  width: 200px;
+  position: relative;
+  display: inline-block;
+}
+.hoverPP{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(211, 211, 211, 0.658);
+  height: 200px;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+}
+.hoverPP img{
+  width: 50px;
+}
+.modify-user-pp{
+  height: 200px;
+  width: 200px;
+}
+.imgContainer:hover .hoverPP {
+  display: flex;
+  cursor: pointer;
+}
+
+.formModifyPP{
+  display: none;
+}

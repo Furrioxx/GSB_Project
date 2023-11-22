@@ -34,9 +34,7 @@
         </form></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"> <form action="" method="get">
-            <input type="submit" name="" value="Profil" class="deo-btn">
-        </form></a>
+          <a class="nav-link active" aria-current="page" href="profile.php">Profil</a>
         </li>
       </ul>
     </div>

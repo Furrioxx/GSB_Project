@@ -314,4 +314,17 @@ class tools{
             return true;
         }
     }
+
+    public function displayProfilePP($db){
+        $request = new request();
+        $userPP = $request->isTherePp($db);
+        foreach ($userPP as $key => $value) {
+            if($value['ppLink'] != ''){
+                echo '<div class="imgContainer mb-3"><img src="'.$value['ppLink'].'" alt="photo de profile" class="modify-user-pp"><div class="hoverPP"><img src="../src/pencil.png"></div></div><div>';
+            }
+            else{
+                echo '<div class="imgContainer mb-3"><img src="../src/user.jpg" alt="user image" class="modify-user-pp"><div class="hoverPP"><img src="../src/pencil.png"></div></div>';
+            }
+        }
+    }
 }

@@ -164,6 +164,11 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+    public function updatePP($db, $path, $idUser){
+        $query="UPDATE users SET ppLink = '".$path."' WHERE id = '".$idUser."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>
