@@ -43,10 +43,10 @@ class tools{
         $request = new request();
         foreach ($request->getAllUser($db) as $key => $value) {
             if($value['ppLink'] == ''){
-                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"></td></tr>';
+                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"></td><td><button type="button" class="btn btn-outline-danger">Désactiver</button></td></tr>';
             }
             else{
-                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="'.$value['ppLink'].'" alt="user image" style="height:50px;"></td></tr>';
+                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="'.$value['ppLink'].'" alt="user image" style="height:50px;"></td><td><button type="button" class="btn btn-outline-danger">Désactiver</button></td></tr>';
             }
         }
     }
