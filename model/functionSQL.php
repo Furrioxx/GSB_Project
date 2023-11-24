@@ -133,7 +133,7 @@ class request{
 
     public function addUser($db, $nameUser, $surnameUser, $loginUser, $adressUser, $cpUser, $villeUser, $dateUser, $statutUser, $cvCarUser){
         $tempPassword = self::tempPasswordGen(8);
-        $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$tempPassword."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '')";
+        $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$tempPassword."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '', '1')";
         $result = $db->prepare($query);
         $result->execute();
         return $tempPassword;
@@ -166,6 +166,12 @@ class request{
     }
     public function updatePP($db, $path, $idUser){
         $query="UPDATE users SET ppLink = '".$path."' WHERE id = '".$idUser."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
+
+    public function desactiveUser($db, $idUser){
+        $query = "UPDATE users SET isActive = 0 WHERE id = '".$idUser."'";
         $result = $db->prepare($query);
         $result->execute();
     }

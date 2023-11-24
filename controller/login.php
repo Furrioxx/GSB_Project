@@ -16,6 +16,7 @@ if(isset($_POST['submit'])){
                         $_SESSION['idUser'] = $value['id'];
                         $_SESSION['statut'] = $value['statut'];
                         $_SESSION['surname'] = $value['surname'];
+                        $_SESSION['isActive'] = $value['isActive'];
                         header("Location: dashboard.php");
                     }
                     else{

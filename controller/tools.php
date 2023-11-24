@@ -42,11 +42,17 @@ class tools{
     public function displayUsers($db){
         $request = new request();
         foreach ($request->getAllUser($db) as $key => $value) {
-            if($value['ppLink'] == ''){
-                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"></td><td><button type="button" class="btn btn-outline-danger">Désactiver</button></td></tr>';
+            if($value['isActive'] == 1){
+                $desactiveButton = '<button type="submit" name="desacBtn" class="btn btn-outline-danger">Désactiver</button>';
             }
             else{
-                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="'.$value['ppLink'].'" alt="user image" style="height:50px;"></td><td><button type="button" class="btn btn-outline-danger">Désactiver</button></td></tr>';
+                $desactiveButton = "";
+            }
+            if($value['ppLink'] == ''){
+                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="../src/user.jpg" alt="user image" style="height:50px;"></td><td><form action="optionUser.php" method="post" ><input type="number" value="'.$value['id'].'" name="idUser" style="display:none"><button type="submit" name="modifyBtn" class="btn btn-outline-secondary me-1">Modifier</button>'.$desactiveButton.'</form></td></tr>';
+            }
+            else{
+                echo '<tr><th scope="row">'.$value['id'].'</th><td>'.$value['name']." ".$value['surname'].'</td><td>'.$value['login'].'</td><td>'.$value['dateEmbauche'].'</td><td><img src="'.$value['ppLink'].'" alt="user image" style="height:50px;"></td><td><form action="optionUser.php" method="post" ><input type="number" value="'.$value['id'].'" name="idUser" style="display:none"><button type="submit" name="modifyBtn" class="btn btn-outline-secondary me-1">Modifier</button>'.$desactiveButton.'</form></td></tr>';
             }
         }
     }

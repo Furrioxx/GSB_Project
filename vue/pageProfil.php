@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-3">
-                <input type="submit" name ="submit" value ="Modifier" class="btn btn-primary">
+                <input type="submitNewPP" name ="submit" value ="Modifier" class="btn btn-primary">
             </div>
         </form>
         <?php
