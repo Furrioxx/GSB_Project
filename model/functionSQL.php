@@ -88,6 +88,14 @@ class request{
         return $resultArray;
     }
 
+    public function getpreciseCostSheet($db, $idFicheFrais){
+        $query = "SELECT statue FROM cost_sheet WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
     public function getCostSheetComptableNT($db){
         $query = "SELECT idFicheFrais, montant_total, beginDate, endDate, statue, surname, `name`, ppLink FROM cost_sheet INNER JOIN users ON cost_sheet.idUser = users.id WHERE statue = 'NT'";
         $result = $db->prepare($query);

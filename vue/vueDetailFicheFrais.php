@@ -40,7 +40,8 @@
         ?>
         <div class="d-flex mb-3 justify-content-between gap-3 flex-wrap">
         <?php
-        if($_SESSION['statut'] == "comptable"){
+        // si le role est comptable et si la fiche frais est non traité
+        if($_SESSION['statut'] == "comptable" && $tools->isCostSheetNotTraite($db, $idFicheFrais)){
             $tools->displayValidationHF($db, $idFicheFrais);
         }
         ?>

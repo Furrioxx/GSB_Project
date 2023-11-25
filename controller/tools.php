@@ -24,6 +24,8 @@ class tools{
                 
             }
         }
+
+
         
         else if ($role == 'comptable'){
             if($isTraite ==  'nt'){
@@ -344,6 +346,19 @@ class tools{
             }
             else{
                 echo '<div class="imgContainer mb-3"><img src="../src/user.jpg" alt="user image" class="modify-user-pp"><div class="hoverPP"><img src="../src/pencil.png"></div></div>';
+            }
+        }
+    }
+
+    public function isCostSheetNotTraite($db, $idFicheFrais){
+        $request = new request();
+        $result = $request->getpreciseCostSheet($db, $idFicheFrais);
+        foreach ($result as $key => $value) {
+            if($value['statue'] == 'NT'){
+                return true;
+            }
+            else{
+                return false;
             }
         }
     }
