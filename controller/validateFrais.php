@@ -4,6 +4,10 @@ include('../model/config.php');
 include('../model/functionSQL.php');
 include('../controller/tools.php');
 
+if(isset($_SESSION['err-validate-frais'])){
+    unset($_SESSION['err-validate-frais']);
+}
+
 if(isset($_SESSION['name'])){
     if(isset($_POST['submitValidateFrais'])){
         $idFicheFrais = $_POST['idFicheFrais'];
@@ -21,12 +25,14 @@ if(isset($_SESSION['name'])){
         }
         $_SESSION['idFicheFrais'] = $idFicheFrais;
         $tools = new tools();
+        //si le montant des remboursement dépasse le montant indiqué par le visiteur
         if($tools->verifRefundMontant($db, $refundMontantOther, $refundMontantTransport, $idFicheFrais)){   
             $tools->validateFrais($db, $idFicheFrais, $refundMontantTransport, $refundMontantOther); 
             header('Location: dashboard.php');
         }
         else{
-            echo 'test';
+            $_SESSION['err-validate-frais'] =  "les montant renseigné par le comptable est supérieur au montant renseigné par le visiteur";
+            header('Location: detailFicheFrais.php');
         }
         
     }

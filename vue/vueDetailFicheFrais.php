@@ -33,7 +33,11 @@
                 ?>
             </tbody>
         </table>
-
+        <?php
+            if(isset($_SESSION['err-validate-frais'])){
+                echo '<p class="err mb-3">'. $_SESSION['err-validate-frais'].'</p>';
+            }
+        ?>
         <div class="d-flex mb-3 justify-content-between gap-3 flex-wrap">
         <?php
         if($_SESSION['statut'] == "comptable"){
