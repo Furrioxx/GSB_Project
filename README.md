@@ -25,9 +25,7 @@ décrire la logique de validation des fiches frais dnas le cahier des charges:
  - puis les autres champs sont traité automatiquement en reboursant le maximum possible ou la somme renseigné
 
 - faire popup comme quoi on a ajouter un frais
-- faire la sécurité php de addUser
 
 - récupérer le mot de passe temporaire pour le communiquer au nouvelle employé
 
 - le visiteur et comtable peux voir quel est le prix pour une nuit/bouffe max
-- l'admin peut modifier le prix max bouffe/nuit
