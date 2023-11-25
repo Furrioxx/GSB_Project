@@ -19,6 +19,9 @@ if(isset($_SESSION['name'])){
         if(isset($_SESSION['err-desacValidation'])){
             unset($_SESSION['err-desacValidation']);
         }
+        if(isset($_SESSION['err-addUser'])){
+            unset($_SESSION['err-addUser']);
+        }
         $valueDeco = 'Déconnexion';
         $title = "Bonjour " .   $_SESSION['name'];
         if($_SESSION['isActive'] == 1){

@@ -52,6 +52,12 @@
                 <input type="submit" name ="submit" value ="Ajouter" class="btn btn-primary">
                 <p class="err err-message"></p>
             </div>
+
+            <?php
+                if(isset($_SESSION['err-addUser'])){
+                    echo '<p class="err mb-3">'. $_SESSION['err-addUser'].'</p>';
+                }
+            ?>
         </form>
     </span>
 </body>
