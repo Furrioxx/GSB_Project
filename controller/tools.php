@@ -127,11 +127,11 @@ class tools{
                 $request->setRefundMontant($db, $value['id'], $refundMontantTrain);
             }
             else if($value['libelle'] == 'logement'){
-                $refundMontant = self::maxRefundMontant($value['libelle'], $value['timing'], $value['montant']);
+                $refundMontant = self::maxRefundMontant($value['libelle'], $value['timing'], $value['montant'], $db);
                 $request->setRefundMontant($db, $value['id'], $refundMontant);
             }
             else if ($value['libelle'] == 'restauration'){
-                $refundMontant = self::maxRefundMontant($value['libelle'], $value['timing'], $value['montant']);
+                $refundMontant = self::maxRefundMontant($value['libelle'], $value['timing'], $value['montant'], $db);
                 $request->setRefundMontant($db, $value['id'], $refundMontant);
             }
             else{
@@ -142,9 +142,18 @@ class tools{
 
     }
 
-    public function maxRefundMontant($libelle, $timing, $montant){
+    public function maxRefundMontant($libelle, $timing, $montant, $db){
+        $request = new request();
+        $allMaxRefund = $request->getMaxPriceRefund($db);
+        foreach ($allMaxRefund as $key => $value) {
+            if($value['nomPrice'] == 'logement'){
+                $maxPrice1night = $value['maxPrice'];
+            }
+            else if ($value['nomPrice'] == 'restauration'){
+                $maxPrice1Meal =  $value['maxPrice'];
+            }
+        }
         if($libelle == 'logement'){
-            $maxPrice1night = 65;
             if($montant / $timing <= $maxPrice1night){
                 return $montant;
             }
@@ -153,7 +162,6 @@ class tools{
             }
         }
         else if($libelle == 'restauration'){
-            $maxPrice1Meal = 25;
             if($montant / $timing <= $maxPrice1Meal){
                 return $montant;
             }

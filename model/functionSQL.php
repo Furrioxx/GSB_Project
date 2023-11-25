@@ -197,6 +197,14 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+
+    public function getMaxPriceRefund($db){
+        $query = "SELECT * FROM prices";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
 }
 
 ?>
