@@ -31,18 +31,82 @@ if(isset($_SESSION['name'])){
         if(!empty($_POST['goodWord']) && !empty($_POST['writeWord'])){
             if($_POST['goodWord'] == $_POST['writeWord']){
                 $request = new request();
-                $request->desactiveUser($db, $_POST['idUser']);
+                $request->desactiveUser($db, $_SESSION['idUserModif']);
                 header('Location: dashboard.php');
             }
             else{
-                var_dump($_POST['goodWord']);
                 $_SESSION['err-desacValidation'] = "Les mots renseignés ne sont pas identiques";
-                // header('Location: optionUser.php');
+                header('Location: optionUser.php');
             }
         }
         else{
-
+            $_SESSION['err-desacValidation'] = "Les champs n'ont pas été tous remplies";
+            header('Location: optionUser.php');
         }
+    }
+    else if(isset($_POST['modifValidation'])){
+        if(isset($_SESSION['err-modifValidation'])){
+            unset($_SESSION['err-modifValidation']);
+        }
+        $request = new request();
+        $result = $request->getComptableName($db, $_SESSION['idUserModif']); 
+        foreach ($result as $key => $value) {
+            if($value['name'] != $_POST['nameUser']){
+                if(!empty($_POST['nameUser'])){
+                    $request->updateProfile($db, $_SESSION['idUserModif'], 'name', $_POST['nameUser']);
+                }
+                else{
+                    $_SESSION['err-modifValidation'] = "Un des champs est vide";
+                    header('Location: optionUser.php');
+                }
+            }
+            if($value['surname'] != $_POST['surnameUser']){
+                if(!empty($_POST['surnameUser'])){
+                    $request->updateProfile($db, $_SESSION['idUserModif'], 'surname', $_POST['surnameUser']);
+                }
+                else{
+                    $_SESSION['err-modifValidation'] = "Un des champs est vide";
+                    header('Location: optionUser.php');
+                }
+            }
+            if($value['adress'] != $_POST['adressUser']){
+                if(!empty($_POST['adressUser'])){
+                    $request->updateProfile($db, $_SESSION['idUserModif'], 'adress', $_POST['adressUser']);
+                }
+                else{
+                    $_SESSION['err-modifValidation'] = "Un des champs est vide";
+                    header('Location: optionUser.php');
+                }
+            }
+            if($value['cp'] != $_POST['cpUser']){
+                if(!empty($_POST['cpUser'])){
+                    $request->updateProfile($db, $_SESSION['idUserModif'], 'cp', $_POST['cpUser']);
+                }
+                else{
+                    $_SESSION['err-modifValidation'] = "Un des champs est vide";
+                    header('Location: optionUser.php');
+                }
+            }
+            if($value['ville'] != $_POST['villeUser']){
+                if(!empty($_POST['villeUser'])){
+                    $request->updateProfile($db, $_SESSION['idUserModif'], 'ville', $_POST['villeUser']);
+                }
+                else{
+                    $_SESSION['err-modifValidation'] = "Un des champs est vide";
+                    header('Location: optionUser.php');
+                }
+            }
+            if($value['cvcar'] != $_POST['cvCarUser']){
+                if(!empty($_POST['cvCarUser'])){
+                    $request->updateProfile($db, $_SESSION['idUserModif'], 'cvcar', $_POST['cvCarUser']);
+                }
+                else{
+                    $_SESSION['err-modifValidation'] = "Un des champs est vide";
+                    header('Location: optionUser.php');
+                }
+            }
+        }
+        header('Location: dashboard.php');
     }
     else{
         header('Location: dashboard.php');

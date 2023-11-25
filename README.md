@@ -27,3 +27,6 @@ décrire la logique de validation des fiches frais dnas le cahier des charges:
 - pouvoir modifier un user
 - display fiche frais comptable
 - faire popup comme quoi on a ajouter un frais
+
+- le visiteur et comtable peux voir quel est le prix pour une nuit/bouffe max
+- l'admin peut modifier le prix max bouffe/nuit

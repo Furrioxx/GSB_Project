@@ -175,6 +175,12 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+
+    public function updateProfile($db, $idUser, $whatToUpdate, $value){
+        $query = "UPDATE users SET `$whatToUpdate` = '".$value."' WHERE id = '".$idUser."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>

@@ -27,10 +27,6 @@
             </div>
 
             <div class="mb-3">
-                <input type="number" value="<?php echo $_SESSION['idUserModif']; ?>" name ="idUser" class="form-control p-2" style="display:none">
-            </div>
-
-            <div class="mb-3">
                 <input type="submit" name ="desacValidation" value ="Désactiver le compte" class="btn btn-primary">
             </div>
 
