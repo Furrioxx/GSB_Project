@@ -96,6 +96,14 @@ class request{
         return $resultArray;
     }
 
+    public function getCostSheetComptableT($db){
+        $query = "SELECT idFicheFrais, montant_total, refund_total , beginDate, endDate, statue, surname, `name`, ppLink FROM cost_sheet INNER JOIN users ON cost_sheet.idUser = users.id WHERE statue = 'T'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
     public function getAllCost($db, $idFicheFrais){
         $query = "SELECT id, libelle, montant, refund_montant, timing, dateligne, statu, linkJustif , montant_total, refund_total ,  statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);

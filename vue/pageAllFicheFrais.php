@@ -9,12 +9,11 @@
     </nav>
 
     <span>
+        <a href="../controller/dashboard.php"><button class="btn btn-primary mb-3">Retour</button></a>
         <h2><?php echo $title; ?></h2>
         <p class="mb-3">comptable</p>
-        <a href="../controller/allFicheFrais.php">
-            <button class="btn btn-secondary mb-3">Voir toute les fiches frais</button>
-        </a>
-        <h3>Fiche frais à traiter</h3>
+        
+        <h3>Fiche frais traitées</h3>
 
         <table class="table table-striped">
             <thead>
@@ -23,6 +22,7 @@
                     <th scope="col">Date de début</th>
                     <th scope="col">Date de fin</th>
                     <th scope="col">Montant renseigné</th>
+                    <th scope="col">Montant remboursé</th>
                     <th scope="col">Nom du visiteur</th>
                     <th scope="col">photo de profil</th>
                 </tr>
@@ -31,10 +31,10 @@
                 <?php
                 include('../controller/tools.php');
                 $ficheFrais = new tools();
-                $ficheFrais->displayFicheFrais($db,'comptable', 'nt');
+                $ficheFrais->displayFicheFrais($db,'comptable', 't');
                 ?>
             </tbody>
-    </table>
+        </table>
 
     </span>
 </body>
