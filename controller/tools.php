@@ -318,7 +318,7 @@ class tools{
             }
         }
 
-        return $cost;
+        return round($cost, 2);
     }
 
     public function verifRefundMontant($db, $refundMontantOther, $refundMontantTransport, $idFicheFrais){
