@@ -16,12 +16,22 @@ if(isset($_SESSION['name'])){
             $id = $_SESSION['idUser'];
             $request = new request();
             $request->updatePassword($db, $hashPassword, $id);
-            unset($_SESSION['isFirstConnexion']);
+            if(isset($_SESSION['isFirstConnexion'])){
+                unset($_SESSION['isFirstConnexion']);  
+            }
+            if(isset($_SESSION['newPass'])){
+                unset($_SESSION['newPass']);
+            }
             header('Location: dashboard.php');
         }
         else{
             $_SESSION['error_msg_password'] = "Les mots de passes ne sont pas identiques";
-            header('Location: dashboard.php');  
+            if(isset($_SESSION['newPass'])){
+                header('Location: optionUser.php');
+            }
+            else{
+                header('Location: dashboard.php');  
+            }
         }
     }
     else{

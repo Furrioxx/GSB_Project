@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-3">
-                <input type="submitNewPP" name ="submit" value ="Modifier" class="btn btn-primary">
+                <input type="submit" name ="submitNewPP" value ="Modifier" class="btn btn-primary">
             </div>
         </form>
         <?php
@@ -30,6 +30,11 @@
             echo '<p class="err mb-3">'. $_SESSION['error_msg_profile'].'</p>';
         }
         ?>
+        <form action="optionUser.php" method="post">
+            <div class="mb-3">
+                <input type="submit" name ="submitNewPass" value ="Changer de mot de passe" class="btn btn-link">
+            </div>
+        </form>
     </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>

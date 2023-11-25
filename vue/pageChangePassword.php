@@ -9,6 +9,11 @@
     </nav>
 
     <span>
+        <?php
+        if(isset($_SESSION['newPass'])){
+            echo '<a href="../controller/profile.php" class="mb-3"><button class="btn btn-primary">Retour</button></a>';
+        }
+        ?>
         <form action="../controller/changePassword.php" method="post" enctype="multipart/form-data">
             <h2>Changement de mot de passe</h2>
 

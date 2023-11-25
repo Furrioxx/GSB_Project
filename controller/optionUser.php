@@ -18,6 +18,17 @@ if(isset($_SESSION['name'])){
     else if(isset($_SESSION['err-modifValidation'])){
         include('../vue/pageModifyProfile.php');
     }
+    else if (isset($_POST['submitNewPass'])){
+        $_SESSION['newPass'] = true;
+        include('../vue/pageChangePassword.php');
+    }
+    else if(isset($_SESSION['error_msg_password'])){
+        include('../vue/pageChangePassword.php'); 
+    }
+    else{
+        header('Location: dashboard.php');
+    }
+
 }
 else{
     header('Location: dashboard.php');
