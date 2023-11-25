@@ -11,7 +11,7 @@
         <h2><?php echo $title; ?></h2>
         <p class="mb-3">Visiteurs</p>
 
-        <a href="../controller/visiteurAddFrais.php">
+        <a href="../controller/controllerAddFrais.php">
             <button class="mb-3 btn btn-secondary">Ajouter un Frais</button>
         </a>
 

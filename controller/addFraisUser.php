@@ -86,7 +86,7 @@ if(isset($_SESSION['name'])){
             $_SESSION['error_msg_dashboard'] = "Les dates n'ont pas été indiqué";
         }
         if(isset( $_SESSION['error_msg_dashboard'])){
-            header('Location: visiteurAddFrais.php');
+            header('Location: controllerAddFrais.php');
         }
         else{
             header('Location: dashboard.php');
