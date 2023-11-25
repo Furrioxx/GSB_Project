@@ -205,6 +205,12 @@ class request{
         $resultArray = $result->fetchAll();
         return $resultArray;
     }
+
+    public function updateMaxRefund($db, $nomPrice, $newPrice){
+        $query = "UPDATE prices SET maxPrice = '".$newPrice."' WHERE nomPrice = '".$nomPrice."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>

@@ -16,6 +16,12 @@
             <button class="btn mb-3 btn-secondary">Ajouter un utilisateur</button>
         </a>
 
+        <div>
+            <a href="../controller/controllerModifyMaxRefund.php">
+                <button class="btn mb-3 btn-secondary">Modifier les remboursements maximum</button>
+            </a>
+        </div>
+
         <table class="table table-striped">
             <thead>
                 <tr>
