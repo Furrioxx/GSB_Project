@@ -106,7 +106,7 @@
                 <?php
                 include('../controller/tools.php');
                 $ficheFrais = new tools();
-                $ficheFrais->displayFicheFrais($db,'visiteur');
+                $ficheFrais->displayFicheFrais($db,'visiteur', '');
                 ?>
             </tbody>
         </table>
