@@ -21,6 +21,7 @@ if(isset($_SESSION['name'])){
             }
             if(isset($_SESSION['newPass'])){
                 unset($_SESSION['newPass']);
+                $_SESSION['popupModifPass'] = true;
             }
             header('Location: dashboard.php');
         }

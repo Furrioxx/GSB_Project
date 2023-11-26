@@ -26,6 +26,6 @@ décrire la logique de validation des fiches frais dnas le cahier des charges:
 
 ---------------
 
-- faire popup comme quoi on a ajouter un frais
-
 - récupérer le mot de passe temporaire pour le communiquer au nouvelle employé
+
+- avoir un mot de passe de au moins x caractère...
