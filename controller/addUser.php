@@ -23,6 +23,7 @@ if(isset($_SESSION['name'])){
             $request = new request();
             $tempPassword = $request->addUser($db, $nameUser,$surnameUser, $loginUser, $adressUser, $cpUser, $villeUser, $dateUser, $statutUser, $cvCarUser);
         
+            $_SESSION['popUpAddUser'] = true;
             header('Location: dashboard.php');
         }
         else{
