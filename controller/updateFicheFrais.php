@@ -23,6 +23,7 @@ if(isset($_SESSION['name'])){
                     $cost = $tools->calculPriceCar($db, $_POST['newKmCar']);
                     $request->updateFrais($db, $actualLibelle, $cost, $_POST['newKmCar'], $actualLinkJustif, $idFrais);
                 }
+                $_SESSION['popUpModifFrais'] = true;
                 header('Location: detailFicheFrais.php');
             }
 
@@ -42,6 +43,7 @@ if(isset($_SESSION['name'])){
                             $request->updateFrais($db, $actualLibelle, $newTrainMontant, $actualTiming, $actualLinkJustif, $idFrais);
                         }
                     }
+                    $_SESSION['popUpModifFrais'] = true;
                     header('Location: detailFicheFrais.php');
                 }
                 else{
@@ -64,7 +66,8 @@ if(isset($_SESSION['name'])){
                         else{
                             $request->updateFrais($db, $actualLibelle, $newPriceLogement, $actualTiming, $actualLinkJustif, $idFrais);
                         }
-                    } 
+                    }
+                    $_SESSION['popUpModifFrais'] = true; 
                     header('Location: detailFicheFrais.php');
                 }
                 else{
@@ -88,6 +91,7 @@ if(isset($_SESSION['name'])){
                             $request->updateFrais($db, $actualLibelle, $newPriceRestauration, $actualTiming, $actualLinkJustif, $idFrais);
                         }
                     } 
+                    $_SESSION['popUpModifFrais'] = true;
                     header('Location: detailFicheFrais.php');
                 }
                 else{
@@ -124,6 +128,7 @@ if(isset($_SESSION['name'])){
                             $request->updateFrais($db, $actualLibelle, $actualMontant, $actualTiming, $tools->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'newJustifOther'), $idFrais);
                         }
                     } 
+                    $_SESSION['popUpModifFrais'] = true;
                     header('Location: detailFicheFrais.php');
                 }
                 else{

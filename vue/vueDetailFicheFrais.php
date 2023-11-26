@@ -37,6 +37,10 @@
             if(isset($_SESSION['err-validate-frais'])){
                 echo '<p class="err mb-3">'. $_SESSION['err-validate-frais'].'</p>';
             }
+            if(isset($_SESSION['popUpModifFrais'])){
+                echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié un frais avec succès </div> </div>';
+                unset($_SESSION['popUpModifFrais']);
+            }
         ?>
         <div class="d-flex mb-3 justify-content-between gap-3 flex-wrap">
         <?php
