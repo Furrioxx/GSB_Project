@@ -145,18 +145,19 @@ function formValidation(){
     }
 }
 
-// const hoverPP = document.querySelector('.hoverPP')
-// const formModifyPP = document.querySelector('.formModifyPP')
-// let g = 0
-// hoverPP.onclick = function(){
-//     if(g==0){
-//         formModifyPP.style.display = "block"
-//         g = 1
-//     }
-//     else{
-//         formModifyPP.style.display = "none";
-//         g = 0
-//     }
-// }
-
 $('.toast').toast('show')
+
+const hoverPP = document.querySelector('.hoverPP')
+const formModifyPP = document.querySelector('.formModifyPP')
+let g = 0
+hoverPP.onclick = function(){
+    if(g==0){
+        formModifyPP.style.display = "block"
+        g = 1
+    }
+    else{
+        formModifyPP.style.display = "none";
+        g = 0
+    }
+}
+

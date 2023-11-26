@@ -17,7 +17,8 @@ if(isset($_SESSION['name'])){
             $request = new request();
             $tools = new tools();
             $request->updatePP($db, $tools->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'newPP'), $_SESSION['idUser']);
-            header('Location: profile.php');
+            $_SESSION['popUpNewPP'] = true;
+            header('Location: dashboard.php');
         }
         else{
             $_SESSION['error_msg_profile'] = "Vous n'avez pas remplie le champs";

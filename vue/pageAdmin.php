@@ -62,6 +62,10 @@
             echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié votre mot de passe avec succès </div> </div>';
             unset($_SESSION['popupModifPass']);
         }
+        if(isset($_SESSION['popUpNewPP'])){
+            echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié votre photo de profil avec succès </div> </div>';
+            unset($_SESSION['popUpNewPP']);
+        }
         ?>
 
     </span>
