@@ -34,8 +34,7 @@
                 $ficheFrais->displayFicheFrais($db,'comptable', 'nt');
                 ?>
             </tbody>
-    </table>
-
+        </table>
     </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>

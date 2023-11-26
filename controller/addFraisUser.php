@@ -89,6 +89,7 @@ if(isset($_SESSION['name'])){
             header('Location: controllerAddFrais.php');
         }
         else{
+            $_SESSION['popUpNewFicheFrais'] = true;
             header('Location: dashboard.php');
         }
     }
