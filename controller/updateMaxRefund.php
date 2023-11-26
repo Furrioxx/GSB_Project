@@ -36,6 +36,7 @@ if(isset($_SESSION['name'])){
                 }
             }
         }
+        $_SESSION['popUpModifyMaxRefund'] = true;
         header('Location: dashboard.php');
     }
     else{

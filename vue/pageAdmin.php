@@ -46,6 +46,10 @@
             echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Ajout réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez ajouté un nouvel utilisateur avec succès </div> </div>';
             unset($_SESSION['popUpAddUser']);
         }
+        if(isset($_SESSION['popUpModifyMaxRefund'])){
+            echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié les montant remboursé avec succès </div> </div>';
+            unset($_SESSION['popUpModifyMaxRefund']);
+        }
         ?>
 
     </span>
