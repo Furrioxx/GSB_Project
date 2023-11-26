@@ -50,6 +50,14 @@
             echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié les montant remboursé avec succès </div> </div>';
             unset($_SESSION['popUpModifyMaxRefund']);
         }
+        if(isset($_SESSION['popupDesactiveUser'])){
+            echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Désactivation réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez désactivé l\'utilisateur avec succès </div> </div>';
+            unset($_SESSION['popupDesactiveUser']);
+        }
+        if(isset($_SESSION['popupModifUserAdmin'])){
+            echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié l\'utilisateur avec succès </div> </div>';
+            unset($_SESSION['popupModifUserAdmin']);
+        }
         ?>
 
     </span>

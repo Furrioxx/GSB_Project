@@ -32,6 +32,7 @@ if(isset($_SESSION['name'])){
             if($_POST['goodWord'] == $_POST['writeWord']){
                 $request = new request();
                 $request->desactiveUser($db, $_SESSION['idUserModif']);
+                $_SESSION['popupDesactiveUser'] = true;
                 header('Location: dashboard.php');
             }
             else{
@@ -106,6 +107,7 @@ if(isset($_SESSION['name'])){
                 }
             }
         }
+        $_SESSION['popupModifUserAdmin'] = true;
         header('Location: dashboard.php');
     }
     else{
