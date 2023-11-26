@@ -35,6 +35,13 @@
                 ?>
             </tbody>
         </table>
+
+        <?php
+        if(isset($_SESSION['popUpValidateFrais'])){
+            echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Validation réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez validé une fiche frais avec succès </div> </div>';
+            unset($_SESSION['popUpValidateFrais']);
+        }
+        ?>
     </span>
 </body>
 <script src="../dist/viewDashboard.js"></script>

@@ -28,6 +28,7 @@ if(isset($_SESSION['name'])){
         //si le montant des remboursement dépasse le montant indiqué par le visiteur
         if($tools->verifRefundMontant($db, $refundMontantOther, $refundMontantTransport, $idFicheFrais)){   
             $tools->validateFrais($db, $idFicheFrais, $refundMontantTransport, $refundMontantOther); 
+            $_SESSION['popUpValidateFrais'] = true;
             header('Location: dashboard.php');
         }
         else{
