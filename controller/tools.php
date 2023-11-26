@@ -95,11 +95,11 @@ class tools{
         }
     }
 
-    public function displayValidationHF($db, $idFicheFrais){
+    public function displayValidationHF($db, $idFicheFrais, $maxRefund1night, $maxRefund1meal ){
         $request = new  request();
         $allHFCost = $request->getAllHFCost($db, $idFicheFrais);
         if(count($allHFCost) == 2){
-            echo '<div class="dbInfos flex-fill"> <h4>Montant renseigné</h4> <div class="mt-3"><label>'.$allHFCost[0]['libelle'].' : </label><input type="text" value="'.$allHFCost[0]['montant'].' €" class="form-control" disabled> </div> <div class="mt-3"><label>'.$allHFCost[1]['libelle'].' : </label><input type="text" value="'.$allHFCost[1]['montant'].' €" class="form-control" disabled> </div></div> <div class="modifyInfo flex-fill"> <h4>Montant à rembourser</h4> <form action="validateFrais.php" method="post" enctype="multipart/form-data"> <div class="mt-3"> <label></label><input type="number" name="refundMontantTransport" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <label></label><input type="number" name="refundMontantOther" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""> </form></div>';
+            echo '<div class="dbInfos flex-fill"> <p>Maximum remboursé pour une nuit : '.$maxRefund1night.' €</p> <h4>Montant renseigné</h4> <div class="mt-3"><label>'.$allHFCost[0]['libelle'].' : </label><input type="text" value="'.$allHFCost[0]['montant'].' €" class="form-control" disabled> </div> <div class="mt-3"><label>'.$allHFCost[1]['libelle'].' : </label><input type="text" value="'.$allHFCost[1]['montant'].' €" class="form-control" disabled> </div></div> <div class="modifyInfo flex-fill"> <p>Maximum remboursé pour un repas : '.$maxRefund1meal.' €</p> <h4>Montant à rembourser</h4> <form action="validateFrais.php" method="post" enctype="multipart/form-data"> <div class="mt-3"> <label></label><input type="number" name="refundMontantTransport" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <label></label><input type="number" name="refundMontantOther" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""> </form></div>';
         }
         else if(count($allHFCost)== 1){
             if($allHFCost[0]['libelle'] == 'transport (train)'){
@@ -108,10 +108,10 @@ class tools{
             else{
                 $nameInput = "refundMontantOther";
             }
-            echo '<div class="dbInfos flex-fill"> <h4>Montant renseigné</h4> <div class="mt-3"><label>'.$allHFCost[0]['libelle'].' : </label><input type="text" value="'.$allHFCost[0]['montant'].' €" class="form-control" disabled> </div> </div> <div class="modifyInfo flex-fill"> <h4>Montant à rembourser</h4> <form action="validateFrais.php" method="post" enctype="multipart/form-data"> <div class="mt-3"> <label></label><input type="number" name="'.$nameInput.'" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""> </form></div>';
+            echo '<div class="dbInfos flex-fill"> <p>Maximum remboursé pour une nuit : '.$maxRefund1night.' €</p> <h4>Montant renseigné</h4> <div class="mt-3"><label>'.$allHFCost[0]['libelle'].' : </label><input type="text" value="'.$allHFCost[0]['montant'].' €" class="form-control" disabled> </div> </div> <div class="modifyInfo flex-fill"> <p>Maximum remboursé pour un repas : '.$maxRefund1meal.' €</p> <h4>Montant à rembourser</h4> <form action="validateFrais.php" method="post" enctype="multipart/form-data"> <div class="mt-3"> <label></label><input type="number" name="'.$nameInput.'" placeholder="Entrez le montant remboursé" class="form-control" required> </div> <div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""> </form></div>';
         }
         else{
-            echo '<form action="validateFrais.php" method="post" enctype="multipart/form-data"><div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""></form>';
+            echo '<form action="validateFrais.php" method="post" enctype="multipart/form-data"><p>Maximum remboursé pour une nuit : '.$maxRefund1night.' €</p><p>Maximum remboursé pour un repas : '.$maxRefund1meal.' €</p><div class="mt-3"> <input type="submit" name ="submitValidateFrais" value ="Valider" class="btn btn-primary"> </div> <input type="text" name="idFicheFrais" value="'.$idFicheFrais.'" style="display: none;""></form>';
         }
         
     }

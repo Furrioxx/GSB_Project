@@ -42,7 +42,7 @@
         <?php
         // si le role est comptable et si la fiche frais est non traité
         if($_SESSION['statut'] == "comptable" && $tools->isCostSheetNotTraite($db, $idFicheFrais)){
-            $tools->displayValidationHF($db, $idFicheFrais);
+            $tools->displayValidationHF($db, $idFicheFrais, $maxRefund1night, $maxRefund1meal);
         }
         ?>
         </div>

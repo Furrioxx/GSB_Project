@@ -57,14 +57,14 @@
                 <input type="number" placeholder="Nombre de nuité" name="TimeLogement" id="TimeLogement" class="form-control p-2" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" placeholder="Montant de l'hébergement" id="priceLogement" name="priceLogement" class="form-control p-2" >
+                <input type="number" step="0.01" placeholder="Montant de l'hébergement <?php echo '( ' . $maxRefund1night . ' € par nuit )';?>" id="priceLogement" name="priceLogement" class="form-control p-2" >
             </div>
             <h3>Alimentation</h3>
             <div class="mb-3">
                 <input type="text" placeholder="Nombre de repas" id="restaurantTime" name="restaurantTime" class="form-control p-2" >
             </div>
             <div class="mb-3">
-                <input type="number" step="0.01" placeholder="Montant de l'addition" id="restaurantPrice" name="restaurantPrice" class="form-control p-2" >
+                <input type="number" step="0.01" placeholder="Montant de l'addition <?php echo '( ' . $maxRefund1meal . ' € par repas )';?>" id="restaurantPrice" name="restaurantPrice" class="form-control p-2" >
             </div>
 
             <h3>Autre</h3>
