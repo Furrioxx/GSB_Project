@@ -28,37 +28,6 @@ session_start();
                 ?>
             </form>
         </div>
-        <!-- a supprimer -->
-        <div style="display: flex; justify-content:center;">
-            <div>
-                <ul>
-                    <li>login : jean.bourdin@gmail.com</li>
-                    <li>mdp : bourdin1234</li>
-                    <li>statut : visiteur médical</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>login : lola.genevay@gmail.com</li>
-                    <li>mdp : genevay1234</li>
-                    <li>statut : visiteur médical</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>login : pierrick.duchamps@gmail.com</li>
-                    <li>mdp : duchamps1234</li>
-                    <li>statut : comptable</li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>login : admin@gmail.com</li>
-                    <li>mdp : admin1234</li>
-                    <li>statut : admin</li>
-                </ul>
-            </div>
-        </div>
     </main>
 
 </body>
