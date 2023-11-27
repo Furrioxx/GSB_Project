@@ -26,6 +26,5 @@ décrire la logique de validation des fiches frais dnas le cahier des charges:
 
 ---------------
 
-- récupérer le mot de passe temporaire pour le communiquer au nouvelle employé
-
-- avoir un mot de passe de au moins x caractère...
+## Lien utile :
+[Lien vers L'application web](http://www.tom-pelud.fr/gsb)
