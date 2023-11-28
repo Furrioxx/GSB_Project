@@ -18,13 +18,5 @@
 * mdp : admin1234
 * statut : admin
 
-### TODO : 
-
-décrire la logique de validation des fiches frais dnas le cahier des charges: 
- - le comptable doit valider manuellement les frais qui possèdent un justificatif
- - puis les autres champs sont traité automatiquement en reboursant le maximum possible ou la somme renseigné
-
----------------
-
 ## Lien utile :
 [Lien vers L'application web](http://www.tom-pelud.fr/gsb)
