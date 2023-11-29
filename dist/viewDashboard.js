@@ -25,7 +25,7 @@ const transportDiv = document.querySelector('.transportDiv')
 for(let i = 0; i<radios.length; i++){
     radios[i].addEventListener('click', ()=>{
         if(train.checked){
-            transportDiv.innerHTML = '<input type="number" class="form-control" id="transportMontant" placeholder="Entrez le montant du transport" name="transportMontant"><Label>Justificatifs : </Label><input class="form-control" type="file" id="transportFile" name="transportFile">'
+            transportDiv.innerHTML = '<input type="number" class="form-control" id="transportMontant" step="0.01" placeholder="Entrez le montant du transport" name="transportMontant"><Label>Justificatifs : </Label><input class="form-control" type="file" id="transportFile" name="transportFile">'
         }
         else{
             transportDiv.innerHTML = '<input type="number" placeholder="Entrez le nombre de kilomètre parcouru" step="0.1" name="kmTransport" class="form-control">'
