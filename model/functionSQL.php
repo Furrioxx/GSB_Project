@@ -211,6 +211,22 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+
+    public function getAllPriceMonth($db, $date){
+        $query = "SELECT libelle, montant, refund_montant, timing, statu FROM cost WHERE MONTH(dateligne) = '".$date."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getSumCostMonth($db, $date){
+        $query = "SELECT SUM(refund_montant) as total_refund_montant FROM cost WHERE MONTH(dateligne) = '".$date."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
 }
 
 ?>

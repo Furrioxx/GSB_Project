@@ -370,4 +370,70 @@ class tools{
             }
         }
     }
+
+    public function displayFraisMonth($db, $month){
+        $request = new request();
+        $result = $request->getAllPriceMonth($db, $month);
+         //si aucun frais n'a été remplie durant le mois
+        if(empty($result)){
+            echo '<tr><td colspan="6">Aucune fiche frais n\'a été remplie ce mois ci</td></tr>';
+        }
+        else{
+            foreach($result as $key => $value){
+                if($value['statu'] == 'F'){
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].' €</td><td>'.$value['refund_montant'].'</td><td>Forfaitarisé</td></tr>';
+                }
+                else{
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>'.$value['refund_montant'].'</td><td>Hors Forfait</td></tr>';
+                }
+            } 
+        }
+        
+    }
+
+    public function display_total_refund_month($db, $month){
+        $request = new request();
+        $sumCost = $request->getSumCostMonth($db, $month);
+        switch($month){
+            case "1":
+                $theMonth = "janvier";
+                break;
+            case "2":
+                $theMonth = "février";
+                break;
+            case "3":
+                $theMonth = "mars";
+                break;
+            case "4":
+                $theMonth = "avril";
+                break;
+            case "5":
+                $theMonth = "mai";
+                break;
+            case "6":
+                $theMonth = "juin";
+                break;
+            case "7":
+                $theMonth = "juillet";
+                break;
+            case "8":
+                $theMonth = "aout";
+                break;
+            case "9":
+                $theMonth = "septembre";
+                break;
+            case "10":
+                $theMonth = "octobre";
+                break;
+            case "11":
+                $theMonth = "novembre";
+                break;
+            case "12":
+                $theMonth = "décembre";
+                break;    
+        }
+        foreach($sumCost as $key => $value){
+            echo '<div class ="mb-3">Le montant total de remboursment du mois de '.$theMonth.' est de : ' . round($value['total_refund_montant'], 2) . ' €</div>';
+        }
+    }
 }

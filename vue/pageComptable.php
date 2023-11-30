@@ -14,6 +14,11 @@
         <a href="../controller/allFicheFrais.php">
             <button class="btn btn-secondary mb-3">Voir toute les fiches frais</button>
         </a>
+        <div>
+            <a href="../controller/allFraisMonth.php">
+                <button class="btn btn-secondary mb-3">Voir les fiches frais par mois</button>
+            </a>
+        </div>
         <h3>Fiche frais à traiter</h3>
 
         <table class="table table-striped">
