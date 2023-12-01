@@ -436,4 +436,18 @@ class tools{
             echo '<div class ="mb-3">Le montant total de remboursment du mois de '.$theMonth.' est de : ' . round($value['total_refund_montant'], 2) . ' €</div>';
         }
     }
+
+    public function sendMail($tempMdp, $to, $name, $surname){
+        $to = $to; 
+        $subject = "MOT DE PASSE TEMPORAIRE"; 
+        $content = "Mr. Mme. \r\n".$name. " " .$surname."\r\n \r\n Vous trouverez ci-dessous les identifiants pour vous connecter à votre espace GSB : \r\n - ". $to. "\r\n - " . $tempMdp;
+        $message = wordwrap($content, 70, "\r\n");
+        $headers = "From: no-reply-Admin-GSB <contact@tom-pelud.fr>\r\n";
+
+        if (mail($to, $subject, $message, $headers))
+        echo "The email has been sent successfully!";
+        else
+        echo "Email did not leave correctly!";
+    }
+    
 }

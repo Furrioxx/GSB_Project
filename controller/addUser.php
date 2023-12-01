@@ -2,6 +2,7 @@
 session_start();
 include('../model/functionSQL.php');
 include('../model/config.php');
+include('../controller/tools.php');
 
 if(isset($_SESSION['err-addUser'])){
     unset($_SESSION['err-addUser']);
@@ -22,6 +23,8 @@ if(isset($_SESSION['name'])){
         
             $request = new request();
             $tempPassword = $request->addUser($db, $nameUser,$surnameUser, $loginUser, $adressUser, $cpUser, $villeUser, $dateUser, $statutUser, $cvCarUser);
+            $tools = new tools();
+            $tools->sendMail($tempPassword[0], $tempPassword[1], $tempPassword[2], $tempPassword[3]);
         
             $_SESSION['popUpAddUser'] = true;
             header('Location: dashboard.php');

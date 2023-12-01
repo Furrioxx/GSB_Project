@@ -31,6 +31,7 @@ if(isset($_SESSION['name'])){
                 header('Location: optionUser.php');
             }
             else{
+                
                 header('Location: dashboard.php');  
             }
         }

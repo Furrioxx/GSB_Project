@@ -152,7 +152,7 @@ class request{
         $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$tempPassword."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '', '1')";
         $result = $db->prepare($query);
         $result->execute();
-        return $tempPassword;
+        return [$tempPassword, $loginUser, $nameUser, $surnameUser];
     }
 
     public function getAllUser($db){
