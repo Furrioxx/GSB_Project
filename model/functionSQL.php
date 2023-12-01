@@ -149,7 +149,8 @@ class request{
 
     public function addUser($db, $nameUser, $surnameUser, $loginUser, $adressUser, $cpUser, $villeUser, $dateUser, $statutUser, $cvCarUser){
         $tempPassword = self::tempPasswordGen(8);
-        $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$tempPassword."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '', '1')";
+        $hashedTempPass = password_hash($tempPassword, PASSWORD_DEFAULT);
+        $query = "INSERT INTO users VALUES(null, '".$surnameUser."', '".$nameUser."', '".$loginUser."', '".$hashedTempPass."', '".$adressUser."', '".$cpUser."', '".$villeUser."', '".$dateUser."', '".$statutUser."', '".$cvCarUser."', '', '1')";
         $result = $db->prepare($query);
         $result->execute();
         return [$tempPassword, $loginUser, $nameUser, $surnameUser];

@@ -8,6 +8,9 @@
         <?php include('../vue/UserNav.php') ?>
     </nav>
 
+    <?php
+    echo password_hash('46WKKjXL', PASSWORD_DEFAULT);
+    ?>
     <span>
         <h2><?php echo $title; ?></h2>
         <p class="mb-3">Admin</p>

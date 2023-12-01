@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
         $result = $fucntionSQL->getUser($db);
         if(!empty($result)){
             foreach ($result as $key => $value) {
-                if(strlen($value['password']) > 8){
+                if(strlen($_POST['password']) > 8){
                     if(password_verify($_POST['password'], $value['password'])){
                         $_SESSION['name'] = $value['name'];
                         $_SESSION['idUser'] = $value['id'];
@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
                     }
                 }
                 else{
-                    if($_POST['password'] == $value['password']){
+                    if(password_verify($_POST['password'], $value['password'])){
                         $_SESSION['name'] = $value['name'];
                         $_SESSION['idUser'] = $value['id'];
                         $_SESSION['statut'] = $value['statut'];
