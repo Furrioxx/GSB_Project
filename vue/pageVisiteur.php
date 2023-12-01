@@ -4,16 +4,25 @@
     <?php include('head.php')?> 
 </head>
 <body>
+
     <nav class="navbar-collapse">
         <?php include('../vue/UserNav.php') ?>
     </nav>
     <span>
-        <h2><?php echo $title; ?></h2>
-        <p class="mb-3">Visiteurs</p>
-
-        <a href="../controller/controllerAddFrais.php">
-            <button class="mb-3 btn btn-secondary">Ajouter un Frais</button>
-        </a>
+        <div class="chartContainer">
+            <div>
+                <h2><?php echo $title; ?></h2>
+                <p class="mb-3">Visiteurs</p>
+        
+                <a href="../controller/controllerAddFrais.php">
+                    <button class="mb-3 btn btn-secondary">Ajouter un Frais</button>
+                </a>
+        
+            </div>
+            <div class="mr-2">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
 
         <h3>Vos fiches frais</h3>
 
@@ -31,8 +40,8 @@
             <tbody>
                 <?php
                 include('../controller/tools.php');
-                $ficheFrais = new tools();
-                $ficheFrais->displayFicheFrais($db,'visiteur', '');
+                $tools = new tools();
+                $tools->displayFicheFrais($db,'visiteur', '');
                 ?>
             </tbody>
         </table>
@@ -53,5 +62,34 @@
         
     </span>
 </body>
+<script>
+    <?php
+         $data = $tools->getDataForCharts($db);
+    ?>
+  const ctx = document.getElementById('myChart');
+  const data = {
+  labels: [
+    'Frais renseignés',
+    'Frais remboursés',
+  ],
+  datasets: [{
+    label: 'Montant en euros',
+    data: <?php echo '['.round($data['sum_montant'], 2).', '.round($data['sum_refund_montant'], 2).']'; ?>,
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)'
+    ],
+    hoverOffset: 4
+  }]
+};
+  new Chart(ctx, {
+
+    type: 'doughnut',
+    data: data,
+    options: {
+        responsive : true,
+    }
+  });
+</script>
 <script src="../dist/viewDashboard.js"></script>
 </html>

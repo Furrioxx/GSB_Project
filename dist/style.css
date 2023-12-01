@@ -204,7 +204,8 @@ h3{
   }
 }
 .navCo{
-  background-color: #2c3d5577;
+  background-color: #2c3d55;
+  color: white;
 }
 .imgContainer{
   height: 200px;
@@ -237,5 +238,19 @@ h3{
 }
 
 .formModifyPP{
+  display: none;
+}
+
+.chartContainer{
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mr-2{
+  margin-right: 1em
+}
+
+.verifPass{
   display: none;
 }

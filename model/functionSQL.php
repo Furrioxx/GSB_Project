@@ -228,6 +228,14 @@ class request{
         $resultArray = $result->fetchAll();
         return $resultArray;
     }
+
+    public function getChartMontant($db){
+        $query = "SELECT SUM(montant) as sum_montant, SUM(refund_montant) as sum_refund_montant FROM `cost` WHERE MONTH(dateligne) = MONTH(NOW())";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        return $resultArray;
+    }
 }
 
 ?>

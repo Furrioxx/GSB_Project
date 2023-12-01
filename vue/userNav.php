@@ -27,14 +27,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <a class="navbar-brand" href="#"><p><?php echo $_SESSION['name'] . " " . $_SESSION['surname']?></p></a>
+      <a class="navbar-brand" href="#"><p style="color: white;"><?php echo $_SESSION['name'] . " " . $_SESSION['surname']?></p></a>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#"> <form action="../index.php" method="post">
-            <input type="submit" name="deco" value="Déconnexion" class="deo-btn">
+            <input type="submit" name="deco" value="Déconnexion" class="deo-btn"  style="color: white;">
         </form></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="profile.php">Profil</a>
+          <a class="nav-link active" aria-current="page" href="profile.php"  style="color: white;">Profil</a>
         </li>
       </ul>
     </div>

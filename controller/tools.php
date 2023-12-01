@@ -450,4 +450,9 @@ class tools{
         echo "Email did not leave correctly!";
     }
     
+    public function getDataForCharts($db){
+        $request = new request();
+        $datas = $request->getChartMontant($db);
+        return $datas;
+    }
 }
