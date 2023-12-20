@@ -3,7 +3,6 @@ session_start();
 include('../model/config.php');
 include('../model/functionSQL.php');
 $valueDeco = "";
-
 // vérification de la provenance de l'utilisateur
 if(isset($_SESSION['name'])){
     if(isset($_SESSION['isFirstConnexion'])){

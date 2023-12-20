@@ -132,7 +132,7 @@ class request{
         $query = "SELECT * FROM cost WHERE id = '".$idFrais."'";
         $result = $db->prepare($query);
         $result->execute();
-        $resultArray = $result->fetchAll();
+        $resultArray = $result->fetch();
         return $resultArray;
     }
 

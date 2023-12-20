@@ -8,6 +8,7 @@ if(isset($_POST['deco'])){
     $hrefLogIn = "vue/connexion.php";
 }
 else{
+    session_destroy();
     if(isset($_SESSION['name'])){
         $hrefLogIn = "controller/dashboard.php";
     }
