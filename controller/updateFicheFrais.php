@@ -11,11 +11,11 @@ if(isset($_SESSION['name'])){
             $request = new request();
             $result = $request->getPreciseCost($db, $idFrais);
 
-            $actualLibelle = $result['libelle'];
-            $actualTiming = $result['timing'];
-            $actualMontant = $result['montant'];
-            $actualLinkJustif = $result['linkJustif'];
-            $idFicheFrais = $result['idFicheFrais'];
+            $actualLibelle = $result[0]['libelle'];
+            $actualTiming = $result[0]['timing'];
+            $actualMontant = $result[0]['montant'];
+            $actualLinkJustif = $result[0]['linkJustif'];
+            $idFicheFrais = $result[0]['idFicheFrais'];
             $_SESSION['idFicheFrais'] = $idFicheFrais; 
 
             //pour HF
