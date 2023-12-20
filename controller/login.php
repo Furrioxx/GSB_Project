@@ -7,7 +7,7 @@ if(isset($_POST['submit'])){
     // vérification que les champs sont bien remplis
     if(!empty($_POST['mail']) && !empty($_POST['password'])){
         $fucntionSQL = new request();
-        $result = $fucntionSQL->getUser($db);
+        $result = $fucntionSQL->getUser($db, $_POST['mail']);
         if(!empty($result)){
             foreach ($result as $key => $value) {
                 if(strlen($_POST['password']) > 8){

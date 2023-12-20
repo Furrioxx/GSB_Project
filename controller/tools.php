@@ -9,7 +9,7 @@ class tools{
         $request = new request();
         if($role == 'visiteur'){
             //affichage des fiches frais dans un tableau
-            foreach($request->getCostSheet($db) as $key => $value){
+            foreach($request->getCostSheet($db, $_SESSION['idUser']) as $key => $value){
                 //si les fiche frais ne sont pas traité
                 if($value['statue'] == 'NT'){
                     $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-7" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 12l-2 3"></path><path d="M12 7v5"></path></svg>';
@@ -273,7 +273,7 @@ class tools{
 
     public function calculPriceCar($db,$kmTransport){
         $request = new request();
-        $CVCarUser = $request->getCvCarUser($db)['cvcar'];
+        $CVCarUser = $request->getCvCarUser($db, $_SESSION['idUser'])['cvcar'];
         if($kmTransport <= 5000){
             if($CVCarUser <= 3){
                 $cost = 0.529*$kmTransport;

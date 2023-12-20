@@ -9,11 +9,19 @@ class request{
         
     }
 
-    public function getUser($db){
-        $sql1 = "SELECT * FROM users WHERE login = '".$_POST['mail']."'";
+    public function getUser($db, $mail){
+        $sql1 = "SELECT * FROM users WHERE login = '".$mail."'";
         $result = $db->prepare($sql1);
         $result->execute();
-        $resultArray = $result->fetchAll();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
+        return $resultArray;
+    }
+
+    public function getUserWhithId($db, $id){
+        $sql1 = "SELECT id, name, surname, login, adress, cp, ville, dateEmbauche, statut, cvcar, ppLink, isActive FROM users WHERE id = '".$id."'";
+        $result = $db->prepare($sql1);
+        $result->execute();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 
@@ -33,19 +41,19 @@ class request{
         return $resultArray;
     }
 
-    public function createFicheFrais($db,$beginDate, $endDate){
-        $query = "INSERT INTO cost_sheet VALUES(null, 0, 0,'".$beginDate."', '".$endDate."' ,'".$_SESSION['idUser']."', null ,  'NT')";
+    public function createFicheFrais($db,$beginDate, $endDate , $idUser){
+        $query = "INSERT INTO cost_sheet VALUES(null, 0, 0,'".$beginDate."', '".$endDate."' ,'".$idUser."', null ,  'NT')";
         $result = $db->prepare($query);
         $result->execute();
-        $query2 = "SELECT * FROM cost_sheet WHERE idUser = '".$_SESSION['idUser']."'";
+        $query2 = "SELECT * FROM cost_sheet WHERE idUser = '".$idUser."'";
         $result2 = $db->prepare($query2);
         $result2->execute();
         $test = $result2->fetchAll();
         return $test[count($test)-1]['idFicheFrais'];
     }
 
-    public function getCvCarUser($db){
-        $query = "SELECT cvcar FROM users WHERE id = '".$_SESSION['idUser']."'";
+    public function getCvCarUser($db, $idUser){
+        $query = "SELECT cvcar FROM users WHERE id = '".$idUser."'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetch();
@@ -80,11 +88,11 @@ class request{
         $result->execute();
     }
 
-    public  function getCostSheet($db){
-        $query = "SELECT * FROM cost_sheet WHERE idUser =  '".$_SESSION['idUser']."' ORDER BY endDate DESC";
+    public  function getCostSheet($db, $iduser){
+        $query = "SELECT * FROM cost_sheet WHERE idUser =  '".$iduser."' ORDER BY endDate DESC";
         $result = $db->prepare($query);
         $result->execute();
-        $resultArray = $result->fetchAll();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 
@@ -116,7 +124,7 @@ class request{
         $query = "SELECT id, libelle, montant, refund_montant, timing, dateligne, statu, linkJustif , montant_total, refund_total ,  statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
-        $resultArray = $result->fetchAll();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 
@@ -132,7 +140,7 @@ class request{
         $query = "SELECT * FROM cost WHERE id = '".$idFrais."'";
         $result = $db->prepare($query);
         $result->execute();
-        $resultArray = $result->fetch();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 

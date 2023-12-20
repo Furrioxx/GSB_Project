@@ -18,21 +18,21 @@
         <form action="../controller/updateFicheFrais.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="">Libelle :</label>
-                <input type="text" value="<?php echo $result['libelle'] ?>" name ="newLibelle" class="form-control p-2" <?php  echo ($result['statu'] == "HF" && $result['libelle'] != "transport (train)" ? "" : "disabled")?>>
+                <input type="text" value="<?php echo $result[0]['libelle'] ?>" name ="newLibelle" class="form-control p-2" <?php  echo ($result[0]['statu'] == "HF" && $result[0]['libelle'] != "transport (train)" ? "" : "disabled")?>>
             </div>
             <div class="mb-3">
                 <label for="">Prix :</label>
-                <input type="text" value="<?php echo $result['montant'] ?>" name ="newMontant" class="form-control p-2" <?php  echo ($result['libelle'] != "transport (voiture)" ? "" : "disabled")?>>
+                <input type="text" value="<?php echo $result[0]['montant'] ?>" name ="newMontant" class="form-control p-2" <?php  echo ($result[0]['libelle'] != "transport (voiture)" ? "" : "disabled")?>>
             </div>
             <div class="mb-3">
                 <label for="">Distance / Durée :</label>
-                <input type="text" value="<?php echo $result['timing'] ?>" name ="newTiming" class="form-control p-2" <?php  echo ($result['statu'] != "HF" ? "" : "disabled")?>>
+                <input type="text" value="<?php echo $result[0]['timing'] ?>" name ="newTiming" class="form-control p-2" <?php  echo ($result[0]['statu'] != "HF" ? "" : "disabled")?>>
             </div>
             <input type="text" name="idFrais" value="<?php echo $idFrais?>" style="display: none">
             <div class="mb-3">
                 <label for="">Justificatif :</label>
-                <input type="file" name="newJustif" id="newJustif" class="form-control" <?php  echo ($result['statu'] == "HF" ? "" : "disabled")?>>
-                <img src="<?php echo $result['linkJustif'] ?>" alt=""  width="200px">
+                <input type="file" name="newJustif" id="newJustif" class="form-control" <?php  echo ($result[0]['statu'] == "HF" ? "" : "disabled")?>>
+                <img src="<?php echo $result[0]['linkJustif'] ?>" alt=""  width="200px">
             </div>
             
             <div class="mb-3">
