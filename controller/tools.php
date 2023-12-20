@@ -334,8 +334,16 @@ class tools{
         $allcost = $request->getAllCost($db, $idFicheFrais);
         if($refundMontantOther != null || $refundMontantTransport != null){
             foreach ($allcost as $key => $value) {
-                if($refundMontantOther > $value['montant'] || $refundMontantTransport > $value['montant']){
-                    return false;
+                if($value['libelle'] == 'transport (train)'){
+                    if($refundMontantTransport > $value['montant']){
+                        echo 'test';
+                        return false;
+                    }
+                }
+                else{
+                    if($refundMontantOther > $value['montant']){
+                        return false;
+                    }
                 }
             } 
             return true;

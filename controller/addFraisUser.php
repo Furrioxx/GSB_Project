@@ -37,7 +37,7 @@ if(isset($_SESSION['name'])){
             //si au moins 1 frais est remplie :
                 if(!empty($kmTransport) || !empty($transportMontant) || !empty($TimeLogement) || !empty($priceLogement) || !empty($restaurantTime) || !empty($restaurantPrice) || !empty($libelleOther) || !empty($montantOther)){
                     //creer une fiche frais et return son id
-                    $idFicheFrais = $request->createFicheFrais($db, $beginDate, $endDate);
+                    $idFicheFrais = $request->createFicheFrais($db, $beginDate, $endDate, $_SESSION['idUser']);
                     if($_POST['transport'] == "car"){   
                         if(!empty($kmTransport)){
                             $tools = new tools();
