@@ -250,6 +250,18 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+
+    public function deleteAllCost($db, $idFicheFrais){
+        $query = "DELETE FROM cost WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
+
+    public function deleteCostSheet($db, $idFicheFrais){
+        $query = "DELETE FROM cost_sheet WHERE idFicheFrais = '".$idFicheFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>

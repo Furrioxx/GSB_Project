@@ -24,7 +24,14 @@ if(isset($_SESSION['name'])){
         $idFicheFrais = $_SESSION['idFicheFrais'];
         unset($_SESSION['idFicheFrais']);
         include('../vue/vueDetailFicheFrais.php');
-        
+    }
+    else if($_POST['deleteFicheFrais']){
+        $idFicheFrais = $_POST['idFicheFrais'];
+        $request = new request;
+        $request->deleteAllCost($db, $idFicheFrais);
+        $request->deleteCostSheet($db, $idFicheFrais);
+        $_SESSION['popUpDeleteFicheFrais'] = true;
+        header('Location: dashboard.php');
     }
     else{
         header('Location: dashboard.php');
