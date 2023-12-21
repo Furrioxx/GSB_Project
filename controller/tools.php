@@ -154,15 +154,22 @@ class tools{
             }
         }
         if($libelle == 'logement'){
-            if($montant / $timing <= $maxPrice1night){
+            if($montant == 0){
                 return $montant;
             }
+            else if($montant / $timing <= $maxPrice1night){
+                return $montant;
+            }
+            
             else{
                 return $maxPrice1night * $timing;
             }
         }
         else if($libelle == 'restauration'){
-            if($montant / $timing <= $maxPrice1Meal){
+            if($montant == 0){
+                return $montant;
+            }
+            else if($montant / $timing <= $maxPrice1Meal){
                 return $montant;
             }
             else{
@@ -178,7 +185,7 @@ class tools{
             $montantTotal =  $value['montant_total'];
             //si la fiche frais n'est pas traité
             if($_SESSION['statut'] == 'visiteur'){
-                $isModifyButton = '<form action="preciseFrais.php" method="post"><input type="number" name="idFrais" value="'.$value['id'].'" style="display : none"><input name="libelleFrais" type="text" value="'.$value['libelle'].'" style="display : none"><input type="submit" name ="updateFrais" value ="Modifier" class="btn btn-primary"></form>';
+                $isModifyButton = '<td><form action="preciseFrais.php" method="post"><input type="number" name="idFrais" value="'.$value['id'].'" style="display : none"><input name="libelleFrais" type="text" value="'.$value['libelle'].'" style="display : none"><input type="submit" name ="updateFrais" value ="Modifier" class="btn btn-primary"> <input type="submit" name ="deleteFrais" value ="Supprimer" class="btn btn-outline-danger"></form></td>';
             }
             else{
                 $isModifyButton = '';
@@ -190,7 +197,7 @@ class tools{
                 //si le frais est forfaitaire
                 if($value['statu'] == "F"){
                     if($value['linkJustif'] != ''){
-                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
+                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td>'.$isModifyButton.'</tr>';
                     }
                     else{
                         if($value['libelle'] == "transport (voiture)"){
