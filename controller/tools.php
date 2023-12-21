@@ -13,7 +13,7 @@ class tools{
                 //si les fiche frais ne sont pas traité
                 if($value['statue'] == 'NT'){
                     $icon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-7" width="12" height="12" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 12l-2 3"></path><path d="M12 7v5"></path></svg>';
-                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>-</td><td>'.$icon.' En attente</td><td><form action="detailFicheFrais.php" method="post"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td></tr>';
+                    echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['beginDate'].'</td><td>'.$value['endDate'].'</td><td>'.$value['montant_total'].' €</td><td>-</td><td>'.$icon.' En attente</td><td><form action="detailFicheFrais.php" method="post" class="d-flex flex-row-reverse"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"><input type="submit" name ="seeFicheFrais" value ="Voir plus" class="btn btn-primary"></form></td><td><form action="detailFicheFrais.php" method="post" onsubmit="return validateDelete()"><input type="submit" name="deleteFicheFrais" value="Supprimer" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" onclick="validationDelete()"><input type="number" name="idFicheFrais" value="'.$value['idFicheFrais'].'" style="display : none"></form></td></tr>';
                 }
                 //si les fiche frais sont traité
                 else if($value['statue'] == 'T'){
@@ -154,15 +154,22 @@ class tools{
             }
         }
         if($libelle == 'logement'){
-            if($montant / $timing <= $maxPrice1night){
+            if($montant == 0){
                 return $montant;
             }
+            else if($montant / $timing <= $maxPrice1night){
+                return $montant;
+            }
+            
             else{
                 return $maxPrice1night * $timing;
             }
         }
         else if($libelle == 'restauration'){
-            if($montant / $timing <= $maxPrice1Meal){
+            if($montant == 0){
+                return $montant;
+            }
+            else if($montant / $timing <= $maxPrice1Meal){
                 return $montant;
             }
             else{
@@ -178,7 +185,7 @@ class tools{
             $montantTotal =  $value['montant_total'];
             //si la fiche frais n'est pas traité
             if($_SESSION['statut'] == 'visiteur'){
-                $isModifyButton = '<form action="preciseFrais.php" method="post"><input type="number" name="idFrais" value="'.$value['id'].'" style="display : none"><input name="libelleFrais" type="text" value="'.$value['libelle'].'" style="display : none"><input type="submit" name ="updateFrais" value ="Modifier" class="btn btn-primary"></form>';
+                $isModifyButton = '<td><form action="preciseFrais.php" method="post"><input type="number" name="idFrais" value="'.$value['id'].'" style="display : none"><input name="libelleFrais" type="text" value="'.$value['libelle'].'" style="display : none"><input type="submit" name ="updateFrais" value ="Modifier" class="btn btn-primary"> <input type="submit" name ="deleteFrais" value ="Supprimer" class="btn btn-outline-danger"></form></td>';
             }
             else{
                 $isModifyButton = '';
@@ -190,7 +197,7 @@ class tools{
                 //si le frais est forfaitaire
                 if($value['statu'] == "F"){
                     if($value['linkJustif'] != ''){
-                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td><td>'.$isModifyButton.'</td></tr>';
+                        echo '<tr><th scope="row">'.($key+1).'</th><td>'.$value['libelle'].'</td><td>'.$value['timing'].'</td><td>'.$value['montant'].'</td><td>-</td><td>'.$value['dateligne'].'</td><td>Forfaitaire</td><td><a href="'.$value['linkJustif'].'" target="_blank">Voir le Justificatif</a></td>'.$isModifyButton.'</tr>';
                     }
                     else{
                         if($value['libelle'] == "transport (voiture)"){
@@ -271,9 +278,9 @@ class tools{
         return $uploadDir .  "" . $fileName;
     }
 
-    public function calculPriceCar($db,$kmTransport){
+    public function calculPriceCar($db,$kmTransport, $idUser){
         $request = new request();
-        $CVCarUser = $request->getCvCarUser($db, $_SESSION['idUser'])['cvcar'];
+        $CVCarUser = $request->getCvCarUser($db, $idUser)['cvcar'];
         if($kmTransport <= 5000){
             if($CVCarUser <= 3){
                 $cost = 0.529*$kmTransport;

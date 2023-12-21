@@ -10,6 +10,14 @@ if(isset($_SESSION['name'])){
         $libelleFrais = $_POST['libelleFrais'];
         include('../vue/vuePreciseFrais.php');
     }
+    else if (isset($_POST['deleteFrais'])){
+        $idFrais = $_POST['idFrais'];
+        $request = new request;
+        $request->deleteCost($db, $idFrais);
+        $request->updatePriceCostSheet($db, $_SESSION['idFicheFrais']);
+        $_SESSION['popUpDeleteFrais'] = true;
+        header('Location: detailFicheFrais.php');
+    }
     else{
         header('Location: dashboard.php');
     }

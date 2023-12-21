@@ -147,6 +147,15 @@ function formValidation(){
 
 $('.toast').toast('show')
 
+function validateDelete(){
+    if(confirm("Do you really want to submit the form?")){
+        return true
+    }
+    else{
+        return false
+    }
+}
+
 const hoverPP = document.querySelector('.hoverPP')
 const formModifyPP = document.querySelector('.formModifyPP')
 let g = 0

@@ -58,9 +58,13 @@
             echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Modification réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez modifié votre photo de profil avec succès </div> </div>';
             unset($_SESSION['popUpNewPP']);
         }
+        if(isset($_SESSION['popUpDeleteFicheFrais'])){
+            echo '<div class="toast " data-delay="5000" style="position: absolute; top: 126px; right: 0; width: 350px;"> <div class="toast-header bg-success"> <strong class="mr-auto  text-white">Supression réussis</strong></div><div style="--bs-bg-opacity: .5;" class="toast-body bg-success text-white"> Vous avez supprimé la fiche de frais avec succès </div> </div>';
+            unset($_SESSION['popUpDeleteFicheFrais']);
+        }
         ?>
         
-    </span>
+    </span>    
 </body>
 <script>
     <?php
