@@ -56,7 +56,7 @@ if(isset($_SESSION['name'])){
                             $request->sendFrais($db, null, 'transport (train)', $transportMontant, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'transportFile'));
                         }else{
                             $tools = new tools();
-                            $request->sendFrais($db,null,'transport (train)', 0, 0 , $endDate, $idFicheFrais, 'F', null);
+                            $request->sendFrais($db,null,'transport (train)', 0, 0 , $endDate, $idFicheFrais, 'HF', null);
                         }
                         
                     }
