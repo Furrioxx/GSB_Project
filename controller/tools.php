@@ -278,9 +278,9 @@ class tools{
         return $uploadDir .  "" . $fileName;
     }
 
-    public function calculPriceCar($db,$kmTransport){
+    public function calculPriceCar($db,$kmTransport, $idUser){
         $request = new request();
-        $CVCarUser = $request->getCvCarUser($db, $_SESSION['idUser'])['cvcar'];
+        $CVCarUser = $request->getCvCarUser($db, $idUser)['cvcar'];
         if($kmTransport <= 5000){
             if($CVCarUser <= 3){
                 $cost = 0.529*$kmTransport;
