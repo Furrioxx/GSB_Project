@@ -43,6 +43,10 @@ if(isset($_SESSION['name'])){
                             $tools = new tools();
                             $request->sendFrais($db,null,'transport (voiture)', $tools->calculPriceCar($db, $kmTransport), $kmTransport , $endDate, $idFicheFrais, 'F', null);
                         }
+                        else{
+                            $tools = new tools();
+                            $request->sendFrais($db,null,'transport (voiture)', 0, 0 , $endDate, $idFicheFrais, 'F', null);
+                        }
                     }
                     //si le transport est le train
                     else{
@@ -50,7 +54,11 @@ if(isset($_SESSION['name'])){
                         if(!empty($transportMontant) && isset($_FILES['transportFile'])){
                             $fileDownload = new tools();
                             $request->sendFrais($db, null, 'transport (train)', $transportMontant, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'transportFile'));
+                        }else{
+                            $tools = new tools();
+                            $request->sendFrais($db,null,'transport (train)', 0, 0 , $endDate, $idFicheFrais, 'F', null);
                         }
+                        
                     }
                     //si les champs hebergement on été remplies
                     if(!empty($TimeLogement) && !empty($priceLogement)){
@@ -58,16 +66,28 @@ if(isset($_SESSION['name'])){
                             $request->sendFrais($db,null,'logement',$priceLogement, $TimeLogement , $endDate, $idFicheFrais, 'F', null);
                         }
                     }
+                    else{
+                        $tools = new tools();
+                        $request->sendFrais($db,null,'logement', 0, 0 , $endDate, $idFicheFrais, 'F', null);
+                    }
                     //si les champs alimentations on été remplies
                     if(!empty($restaurantTime) && !empty($restaurantPrice)){
                         if($restaurantTime != 0){
                             $request->sendFrais($db,null,'restauration',$restaurantPrice, $restaurantTime , $endDate, $idFicheFrais, 'F', null);
                         }
                     }
+                    else{
+                        $tools = new tools();
+                        $request->sendFrais($db,null,'restauration', 0, 0 , $endDate, $idFicheFrais, 'F', null);
+                    }
                     //si le champs autre a été remplies
                     if(!empty($libelleOther) &&  !empty($montantOther) && isset($_FILES['fileOther'])){
                         $fileDownload = new tools();
                         $request->sendFrais($db, null, $libelleOther, $montantOther, null, $endDate, $idFicheFrais, 'HF', $fileDownload->downloadImage('../uploads/'.$_SESSION['idUser'].'/', 'fileOther'));   
+                    }
+                    else{
+                        $tools = new tools();
+                        $request->sendFrais($db,null,'Autres', 0, 0 , $endDate, $idFicheFrais, 'HF', null);
                     }
                     $request->updatePriceCostSheet($db, $idFicheFrais);
                 }
