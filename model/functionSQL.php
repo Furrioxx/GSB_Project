@@ -244,6 +244,12 @@ class request{
         $resultArray = $result->fetch();
         return $resultArray;
     }
+
+    public function deleteCost($db, $idFrais){
+        $query = "DELETE FROM cost WHERE id = '".$idFrais."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>
