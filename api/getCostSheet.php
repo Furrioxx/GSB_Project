@@ -39,5 +39,9 @@ if(verifyToken($token, $mail, $db)){
 
     echo json_encode($json); 
 }
+else{
+    $json = array('status' => 400, 'message' => 'mauvais password');
+    echo json_encode($json); 
+}
 
 ?>

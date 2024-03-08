@@ -15,8 +15,8 @@ function generateToken($mail, $db){
 
 function verifyToken($recievedToken, $recievedMail ,$db){
     $request = new request();
-    $tokenSaved = $request->getToken($db, $recievedMail);
-    $tokenCreatedAt = $request->getTokenCreatedAt($db, $recievedMail);
+    $tokenSaved = $request->getToken($db, $recievedMail)['token'];
+    $tokenCreatedAt = $request->getTokenCreatedAt($db, $recievedMail)['token_created_at'];
 
     $validityTime = new DateTime();
     $validityTime->modify('+1 hour');
