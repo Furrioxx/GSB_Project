@@ -73,8 +73,8 @@
   const ctx = document.getElementById('myChart');
   const data = {
   labels: [
-    'Frais renseignés',
-    'Frais remboursés',
+    'Frais renseignés du mois',
+    'Frais remboursés du mois',
   ],
   datasets: [{
     label: 'Montant en euros',

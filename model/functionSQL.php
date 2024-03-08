@@ -262,6 +262,28 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+
+    public function getToken($db, $mail){
+        $query = "SELECT token FROM users WHERE login = '".$mail."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        return $resultArray;
+    }
+
+    public function getTokenCreatedAt($db, $mail){
+        $query = "SELECT token_created_at FROM users WHERE login = '".$mail."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        return $resultArray;
+    }
+
+    public function addToken($db, $mail, $token){
+        $query = "UPDATE users set token = '".$token."', token_created_at = NOW() WHERE login = '".$mail."'";
+        $result = $db->prepare($query);
+        $result->execute();
+    }
 }
 
 ?>
