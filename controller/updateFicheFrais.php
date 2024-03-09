@@ -48,7 +48,7 @@ if(isset($_SESSION['name'])){
             else if(isset($_POST['newTiming'])){
                 if(!empty($_POST['newTiming'])){
                     $tools = new tools();
-                    $cost = $tools->calculPriceCar($db, $_POST['newTiming']);
+                    $cost = $tools->calculPriceCar($db, $_POST['newTiming'], $_SESSION['idUser']);
                     $request->updateFrais($db, $actualLibelle, $cost, $_POST['newTiming'], $actualLinkJustif, $idFrais);
                 }
             }

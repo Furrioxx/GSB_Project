@@ -42,7 +42,7 @@ class Api{
     }
 
     public function getCostSheet(){
-        include('token.php');
+        include_once('token.php');
 
         header('Content-Type: application/json');
 
@@ -51,9 +51,9 @@ class Api{
         $token = $_POST['token'];
         $mail = $_POST['mail'];
 
-        if(verifyToken($token, $mail, $db)){
+        if(verifyToken($token, $mail, $this->db)){
             $fucntionSQL = new request();
-            $result = $fucntionSQL->getCostSheet($db, $idUser);
+            $result = $fucntionSQL->getCostSheet($this->db, $idUser);
             $json = array('status' => 200, 'function' => 'get cost sheet');
             foreach ($result as $key => $value) {
                 if($isTraite == "T"){
@@ -88,7 +88,7 @@ class Api{
     }
 
     public function getCost(){
-        include('token.php');
+        include_once('token.php');
 
         header('Content-Type: application/json');
 
@@ -96,9 +96,9 @@ class Api{
         $token = $_POST['token'];
         $mail = $_POST['mail'];
 
-        if(verifyToken($token, $mail, $db)){
+        if(verifyToken($token, $mail, $this->db)){
                 $fucntionSQL = new request();
-                $result = $fucntionSQL->getAllCost($db, $idFicheFrais);
+                $result = $fucntionSQL->getAllCost($this->db, $idFicheFrais);
                 $json = array('status' => 200, 'statut' => 'Succès');
                 foreach ($result as $key => $value) {
                         $json['data'][$key] = $value;
