@@ -103,13 +103,32 @@ class Api{
                 foreach ($result as $key => $value) {
                         $json['data'][$key] = $value;
                 }
-
-                echo json_encode($json); 
         }
         else{
             $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter', 'mail' => $mail, 'id' => $idUser, "token" => $token, 'isTraite' => $isTraite);
-            echo json_encode($json); 
         }
-        
+        echo json_encode($json); 
+    }
+
+    public function deleteCostSheet(){
+        include_once('token.php');
+        header('Content-Type: application/json');
+
+        $idFicheFrais = $_POST['idFicheFrais'];
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            $request = new request();
+            $request->deleteAllCost($this->db, $idFicheFrais);
+            $request->deleteCostSheet($this->db, $idFicheFrais);
+
+            $json = array('status' => 200, 'message' => 'supprimé', 'Fiche Frais supprimé' => $idFicheFrais);
+        }
+        else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter', 'mail' => $mail, "token" => $token);
+        }
+
+        echo json_encode($json);
     }
 }

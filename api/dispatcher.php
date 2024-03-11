@@ -28,6 +28,12 @@ try {
                 $api->getCost();
             }
             break;
+        case "deleteCostSheet":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->deleteCostSheet();
+            }
+            break;
         // case "article":
         //     if (!empty($url[1])) {
         //         getArticleById($url[1]);
