@@ -34,6 +34,12 @@ try {
                 $api->deleteCostSheet();
             }
             break;
+        case "addCostSheet":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->addCostSheet();
+            }
+            break;
         // case "article":
         //     if (!empty($url[1])) {
         //         getArticleById($url[1]);
