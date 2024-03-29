@@ -41,7 +41,7 @@ if(isset($_SESSION['name'])){
                     if($_POST['transport'] == "car"){   
                         if(!empty($kmTransport)){
                             $tools = new tools();
-                            $request->sendFrais($db,null,'transport (voiture)', $tools->calculPriceCar($db, $kmTransport), $kmTransport , $endDate, $idFicheFrais, 'F', null);
+                            $request->sendFrais($db,null,'transport (voiture)', $tools->calculPriceCar($db, $kmTransport,$_SESSION['idUser']), $kmTransport , $endDate, $idFicheFrais, 'F', null);
                         }
                         else{
                             $tools = new tools();
