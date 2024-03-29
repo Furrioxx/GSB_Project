@@ -40,6 +40,12 @@ try {
                 $api->addCostSheet();
             }
             break;
+        case "changePassword":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->changePassword();
+            }
+            break;
         // case "article":
         //     if (!empty($url[1])) {
         //         getArticleById($url[1]);

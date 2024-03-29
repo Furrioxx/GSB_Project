@@ -284,6 +284,14 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
     }
+
+    public function getHashPassword($db, $idUser){
+        $query = "SELECT password FROM users WHERE id = '".$idUser."'";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetch();
+        return $resultArray;
+    }
 }
 
 ?>
