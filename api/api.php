@@ -275,4 +275,27 @@ class Api{
 
         echo json_encode($json);
     }
+    public function trieMonths(){
+        header('Content-Type: application/json');
+        include_once('token.php');
+    
+        $fucntionSQL = new request();
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+        $date = $_POST['date'];
+        if(verifyToken($token, $mail, $this->db)){
+            $request = new request();
+            $request->getAllPriceMonth($this->db, $date);
+            $json = array('status' => 200, 'message' => 'tab', 'tab creer' => $date);
+        }
+        else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter', 'mail' => $mail, "token" => $token);
+        }
+
+        echo json_encode($json);
+    }
+
+
+
+    
 }
