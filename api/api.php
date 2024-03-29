@@ -235,4 +235,44 @@ class Api{
 
         echo json_encode($json);
     }
+
+    public function changePassword(){
+        include_once('token.php');
+        header('Content-Type: application/json');
+
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+        $currentPassword = $_POST['currentPassword'];
+        $newpassword = $_POST['password'];
+        $repassword = $_POST['repassword'];
+        $id = $_POST['idUser'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            
+            $request = new request();
+            $passwordInDb = $request->getHashPassword($this->db, $id)['password'];
+
+            if(password_verify($currentPassword, $passwordInDb)){
+                if(!empty($newpassword) && !empty($repassword)){
+                    if($newpassword == $repassword){
+                        $hashPassword = password_hash($newpassword, PASSWORD_DEFAULT);
+                        $request->updatePassword($this->db, $hashPassword, $id);
+                        $json = array('status' => 200, 'message' => 'mot de passe changé avec succes');
+                    }else{
+                        $json = array('status' => 400, 'message' => 'different');
+                    }
+                }else{
+                    $json = array('status' => 400, 'message' => 'empty');
+                }
+            }else{
+                $json = array('status' => 400, 'message' => 'Le mot de passe actuel n\'est pas valide');
+            }
+            
+        }
+        else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter', 'mail' => $mail, "token" => $token);
+        }
+
+        echo json_encode($json);
+    }
 }
