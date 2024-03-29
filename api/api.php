@@ -294,8 +294,4 @@ class Api{
 
         echo json_encode($json);
     }
-
-
-
-    
 }

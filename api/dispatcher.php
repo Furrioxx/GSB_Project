@@ -46,12 +46,12 @@ try {
                 $api->changePassword();
             }
             break;
-            case "trieMonths":
-                if(empty($url[1])){
-                    $api = new Api($db);
-                    $api->trieMonths();
-                }
-                break;
+        case "trieMonths":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->trieMonths();
+            }
+            break;
         // case "article":
         //     if (!empty($url[1])) {
         //         getArticleById($url[1]);
