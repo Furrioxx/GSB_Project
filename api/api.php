@@ -110,6 +110,29 @@ class Api{
         echo json_encode($json); 
     }
 
+    public function getCostSheetNT(){
+        include_once('token.php');
+
+        header('Content-Type: application/json');
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            $fucntionSQL = new request();
+            $costSheets = $fucntionSQL->getCostSheetComptableNT($this->db);
+            $json = array('status' => 200, 'function' => 'get cost sheet NT');
+            foreach ($costSheets as $key => $costSheet) {
+                $json['data'][$key] = $costSheet;
+            }  
+
+            echo json_encode($json); 
+        }
+        else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter');
+            echo json_encode($json); 
+        }
+    }
+
     public function deleteCostSheet(){
         include_once('token.php');
         header('Content-Type: application/json');
@@ -271,6 +294,116 @@ class Api{
         }
         else{
             $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter', 'mail' => $mail, "token" => $token);
+        }
+
+        echo json_encode($json);
+    }
+
+    public function getCostSheetPerMonth(){
+        include_once('token.php');
+        header('Content-Type: application/json');
+
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+        $month = $_POST['month'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            if($month >= 1 && $month <=12){
+
+                $request = new request();
+                $costSheets = $request->getAllCostSheetMonth($this->db, $month);
+                $json = array('status' => 200, 'message' => 'succès'); 
+                
+                foreach ($costSheets as $key => $costSheet) {
+                    $json['datas'][$key] = $costSheet; //ajout des fiches de frais dans le json
+                    
+                    $costs = $request->getAllCost($this->db, $costSheet['idFicheFrais']);
+                    foreach ($costs as $keyCost => $cost) {
+                        $json['datas'][$key]['detail'][$keyCost] = $cost; //ajout des detail de la fiche de frais dans le json
+                    }
+                }
+
+                //si aucune fiche de frais valide et payée dans le mois choisi
+                if(empty($costSheet)){
+                    $json['datas'] = null;
+                }
+
+            }else{
+                $json = array('status' => 400, 'message' => 'veuillez entrer un mois valide');
+            }
+        }else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter');
+        }
+
+        echo json_encode($json);
+    }
+
+    public function getPreciseCost(){
+        include_once('token.php');
+        header('Content-Type: application/json');
+
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+        $idFrais = $_POST['idFrais'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            $request = new request();
+            $preciseCost = $request->getPreciseCost($this->db, $idFrais);
+            $json = array("status" => 200, "message" => "succès");
+            foreach ($preciseCost as $key => $cost) {
+                $json['data'] = $cost;
+            }
+        }else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter test');
+        }
+
+        echo json_encode($json);
+    }
+
+    public function updateCost(){
+        include_once('token.php');
+        include '../controller/tools.php';
+        header('Content-Type: application/json');
+
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+        $idUser = $_POST['idUser'];
+        $newLibelle = $_POST['newLibelle'];
+        $newMontant = $_POST['newMontant'];
+        $newTiming = $_POST['newTiming'];
+        $idFrais = $_POST['idFrais'];
+        $idFicheFrais = $_POST['idFicheFrais'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            if(isset($newLibelle) && isset($newMontant) && isset($newTiming)){
+                $request = new request();
+                $currentCost = $request->getPreciseCost($this->db, $idFrais);
+
+                //pour les frais qui possède un justificatif (transport train et autre)
+                if(isset($_FILES['newJustif']) && $_FILES['newJustif']["error"] == 0){
+                    $tools = new tools();
+                    $request->updateFrais($this->db, $newLibelle, $newMontant, $newTiming, $tools->downloadImage('../uploads/'.$idUser.'/', 'newJustif'), $idFrais);
+                }
+                else{
+                    //pour les frais qui ne possède pas de justificatif
+                    if($newLibelle == "transport (voiture)"){
+                        $tools = new tools();
+                        $cost = $tools->calculPriceCar($this->db, $newTiming, $idUser);
+                        $request->updateFrais($this->db, $newLibelle, $cost, $newTiming, $currentCost[0]['linkJustif'], $idFrais);
+                        
+                    }else{
+                        $request->updateFrais($this->db, $newLibelle, $newMontant, $newTiming, $currentCost[0]['linkJustif'], $idFrais);
+                    }
+                    
+                }
+                $request->updatePriceCostSheet($this->db, $idFicheFrais);
+                $json = array("status" => 200, "message" => "La fiche de frais à été mise a jour", "idFrais" => $idFrais);
+
+            }else{
+                $json = array('status' => 400, 'message' => 'les données n\'ont pas toutes été envoyé');
+            }
+        }else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter test');
         }
 
         echo json_encode($json);
