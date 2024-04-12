@@ -408,4 +408,26 @@ class Api{
 
         echo json_encode($json);
     }
+    public function getAllCostHF(){
+        include_once('token.php');
+        include '../controller/tools.php';
+        header('Content-Type: application/json');
+
+        $token = $_POST['token'];
+        $mail = $_POST['mail'];
+        $idFicheFrais = $_POST['idFicheFrais'];
+
+        if(verifyToken($token, $mail, $this->db)){
+            $request = new request();
+            $getAllCostHF = $request->getAllHFCost($this->db, $idFicheFrais);
+            $json = array("status" => 200, "message" => "succès");
+            foreach ($getAllCostHF as $key => $cost) {
+                $json['data'][$key] = $cost;
+            }
+        }else{
+            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter test');
+        }
+
+        echo json_encode($json);
+    }
 }

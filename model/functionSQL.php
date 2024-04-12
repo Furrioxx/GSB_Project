@@ -132,7 +132,7 @@ class request{
         $query = "SELECT * FROM cost WHERE idFicheFrais = '".$idFicheFrais."' AND statu = 'HF'";
         $result = $db->prepare($query);
         $result->execute();
-        $resultArray = $result->fetchAll();
+        $resultArray = $result->fetchAll(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 

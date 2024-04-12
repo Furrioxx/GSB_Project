@@ -69,6 +69,12 @@ try {
                 $api->updateCost();
             }
             break;
+        case "getAllCostHF":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->getAllCostHF();
+            }
+            break;
         default:
             throw new Exception("La demande n'est pas valide, vérifiez l'url");
     }
