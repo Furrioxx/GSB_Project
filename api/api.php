@@ -277,21 +277,22 @@ class Api{
     }
     public function trieMonths(){
         header('Content-Type: application/json');
-        include_once('token.php');
-    
-        $fucntionSQL = new request();
-        $token = $_POST['token'];
-        $mail = $_POST['mail'];
-        $date = $_POST['date'];
-        if(verifyToken($token, $mail, $this->db)){
+        if(isset($_POST['mail']) && isset($_POST['date'])) {
+            $mail = $_POST['mail'];
+            $date = $_POST['date'];
             $request = new request();
-            $request->getAllPriceMonth($this->db, $date);
-            $json = array('status' => 200, 'message' => 'tab', 'tab creer' => $date);
-        }
-        else{
-            $json = array('status' => 400, 'message' => 'token invalide ou expiré veuillez vous reconnecter', 'mail' => $mail, "token" => $token);
-        }
+            $expenses = $request->getAllPriceMonth($this->db, $date);
+            if($expenses !== false) {
+                $json = array('status' => 400, 'message' => 'Voici les frais du mois sélectionné', 'expenses' => $expenses);
 
+            } else {
+                $json = array('status' => 200, 'message' => 'Erreur lors de la récupération des frais du mois sélectionné');
+
+            }
+        } else {
+            $json = array('status' => 200, 'message' => 'Paramètres manquants (mail ou date)');
+        }
+    
         echo json_encode($json);
     }
 }
