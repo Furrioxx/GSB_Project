@@ -108,7 +108,7 @@ class request{
         $query = "SELECT idFicheFrais, montant_total, beginDate, endDate, statue, surname, `name`, ppLink FROM cost_sheet INNER JOIN users ON cost_sheet.idUser = users.id WHERE statue = 'NT'";
         $result = $db->prepare($query);
         $result->execute();
-        $resultArray = $result->fetchAll();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 
@@ -121,7 +121,7 @@ class request{
     }
 
     public function getAllCost($db, $idFicheFrais){
-        $query = "SELECT id, libelle, montant, refund_montant, timing, dateligne, statu, linkJustif , montant_total, refund_total ,  statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
+        $query = "SELECT id, libelle, montant, refund_montant, timing, dateligne, statu, linkJustif , montant_total, refund_total, cost.idFicheFrais ,  statue FROM cost INNER JOIN cost_sheet ON cost.idFicheFrais = cost_sheet.idFicheFrais WHERE cost.idFicheFrais = '".$idFicheFrais."'";
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
@@ -226,6 +226,14 @@ class request{
         $result = $db->prepare($query);
         $result->execute();
         $resultArray = $result->fetchAll();
+        return $resultArray;
+    }
+
+    public function getAllCostSheetMonth($db, $month){
+        $query = "SELECT idFicheFrais, montant_total, refund_total FROM cost_sheet WHERE statue = 'T' AND MONTH(endDate) = ".$month." AND YEAR(endDate) = YEAR(NOW());";
+        $result = $db->prepare($query);
+        $result->execute();
+        $resultArray = $result->fetchALL(PDO::FETCH_ASSOC);
         return $resultArray;
     }
 

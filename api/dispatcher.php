@@ -7,8 +7,7 @@ include('../model/functionSQL.php');
 try {
     if (!empty($_GET['route'])) {
     $url = explode("/", filter_var($_GET['route'], FILTER_SANITIZE_URL));
-    // print_r($url);
-    // Filtré l'URL et ajoute de la sécurité.
+    
     switch ($url[0]) {
         case "login":
             if (empty($url[1])) {
@@ -46,19 +45,30 @@ try {
                 $api->changePassword();
             }
             break;
-        case "trieMonths":
+        case "getCostSheetPerMonth":
             if(empty($url[1])){
                 $api = new Api($db);
-                $api->trieMonths();
+                $api->getCostSheetPerMonth();
             }
             break;
-        // case "article":
-        //     if (!empty($url[1])) {
-        //         getArticleById($url[1]);
-        //     } else {
-        //         throw new Exception("Vous n'avez pas renseigné le numéro de l'article");
-        //     }
-        //     break;
+        case "getPreciseCost":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->getPreciseCost();
+            }
+            break;
+        case "getCostSheetNT":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->getCostSheetNT();
+            }
+            break;
+        case "updateCost":
+            if(empty($url[1])){
+                $api = new Api($db);
+                $api->updateCost();
+            }
+            break;
         default:
             throw new Exception("La demande n'est pas valide, vérifiez l'url");
     }
